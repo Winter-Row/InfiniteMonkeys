@@ -181,13 +181,13 @@ public class PlayerControls : MonoBehaviour
 		spriteRenderer.color = Color.white;
 	}
 
-	private Vector2 GetDirection(float moveInput)
-	{
-		Vector2 playerDirection = new Vector2(Mathf.Sign(moveInput), 0).normalized;
-		return playerDirection;
-	}
+    private Vector2 GetDirection(float moveInput)
+    {
+        Vector2 playerDirection = new Vector2(Mathf.Sign(moveInput), 0).normalized;
+        return playerDirection;
+    }
 
-	void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.contacts[0].normal.y > 0.5f)
 		{
