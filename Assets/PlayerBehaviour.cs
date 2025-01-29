@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    private bool CheckPointed = false;
+    private CheckPoint checkPoint;
     // Start is called before the first frame update
     void Start()
     {
-        
+        checkPoint = GameObject.FindGameObjectWithTag("CheckPoint").GetComponent<CheckPoint>();
     }
 
     // Update is called once per frame
@@ -16,11 +16,11 @@ public class PlayerBehaviour : MonoBehaviour
     {
         
     }
-    private void OnDestroy()
+    public void RespawnPlayer()
     {
-        if (CheckPointed)
+        if (checkPoint.checkCheckPointed())
         {
-
+            gameObject.transform.position = new Vector2(checkPoint.getCheckPointPos().x, checkPoint.getCheckPointPos().y);
         }
     }
 }
