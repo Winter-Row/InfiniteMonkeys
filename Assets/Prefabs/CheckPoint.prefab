@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4340886764641638446}
   - component: {fileID: 9158783303433652259}
   - component: {fileID: 5898226316879925149}
-  - component: {fileID: -6625099879051854620}
   - component: {fileID: -7834926684122616725}
   m_Layer: 0
   m_Name: CheckPoint
@@ -99,27 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202b2846621a71b4b925ba1c2cc32465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &-6625099879051854620
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783832747900316727}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!61 &-7834926684122616725
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -130,7 +108,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.21133333}
