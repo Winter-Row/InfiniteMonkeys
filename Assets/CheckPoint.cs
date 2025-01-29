@@ -6,6 +6,7 @@ public class CheckPoint : MonoBehaviour
 {
     private bool passed;
     private SpriteRenderer sprite;
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +27,12 @@ public class CheckPoint : MonoBehaviour
             sprite.color = Color.green;
             passed = true;
         }
+    }
+
+
+
+    private void RespawnPlayer()
+    {
+
     }
 }
