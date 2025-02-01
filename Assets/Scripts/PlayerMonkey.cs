@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMonkey : MonoBehaviour
 {
-    Rigidbody2D rigidbody;
+    Rigidbody2D rb;
     Animator animator;
 
     private float moveHorizontal;
@@ -14,7 +14,7 @@ public class PlayerMonkey : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
@@ -35,7 +35,7 @@ public class PlayerMonkey : MonoBehaviour
 
 
         animator.SetFloat("xVelocity", Mathf.Abs(moveHorizontal));
-        rigidbody.velocity = new Vector2(moveHorizontal * speed, rigidbody.velocity.y);
+        rb.velocity = new Vector2(moveHorizontal * speed, rb.velocity.y);
 
     }
 }
