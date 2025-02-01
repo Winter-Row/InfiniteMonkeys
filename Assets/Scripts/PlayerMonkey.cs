@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerMonkey : MonoBehaviour
 {
-    new Rigidbody2D rigidbody;
+    Rigidbody2D rigidbody;
     Animator animator;
 
     private float moveHorizontal;
@@ -31,10 +32,10 @@ public class PlayerMonkey : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
-    }
 
-    private void FixedUpdate()
-    {
+
+        animator.SetFloat("xVelocity", Mathf.Abs(moveHorizontal));
         rigidbody.velocity = new Vector2(moveHorizontal * speed, rigidbody.velocity.y);
+
     }
 }

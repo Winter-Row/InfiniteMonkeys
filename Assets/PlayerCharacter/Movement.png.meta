@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9d1774ea05cadd74d930aa7e844e6a03
+guid: ed189c509d9023a4c875659d31c551d1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -141,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: attack practice_0
+      name: Movement_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 14
-        height: 15
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8e685adecf3cb8468ef9718c8df916f
-      internalID: -436984822
+      spriteID: 10e3da79d3477bb40b8b1120203f0a56
+      internalID: -1572625086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack practice_1
+      name: Movement_1
       rect:
         serializedVersion: 2
-        x: 14
+        x: 128
         y: 0
-        width: 14
-        height: 15
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,20 +176,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fd2716673961ea49bf7d34a7c9399a2
-      internalID: 1829697393
+      spriteID: 4d42b1bedcb655949afb11cf2257e117
+      internalID: -541885298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack practice_2
+      name: Movement_2
       rect:
         serializedVersion: 2
-        x: 28
+        x: 256
         y: 0
-        width: 14
-        height: 15
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,50 +197,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3698cba60bcbbc4dbc727157b0d6e1b
-      internalID: 9384161
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack practice_3
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 0
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 47a5715f409cabe419660c1bbfa07744
-      internalID: -210380730
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack practice_4
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 0
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b75d84a9c4fe364fa1dd9a0546e793a
-      internalID: -612605679
+      spriteID: aee427fe21b66b440899de76800f1e8c
+      internalID: 2051511032
       vertices: []
       indices: 
       edges: []
@@ -256,11 +214,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      attack practice_0: -436984822
-      attack practice_1: 1829697393
-      attack practice_2: 9384161
-      attack practice_3: -210380730
-      attack practice_4: -612605679
+      Movement_0: -1572625086
+      Movement_1: -541885298
+      Movement_2: 2051511032
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
