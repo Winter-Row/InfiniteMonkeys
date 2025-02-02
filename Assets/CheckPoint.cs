@@ -7,12 +7,15 @@ public class CheckPoint : MonoBehaviour
     private bool passed;
     private SpriteRenderer sprite;
     private Vector2 checkPointPos;
+    private Animator ani;
     // Start is called before the first frame update
     void Start()
     {
         passed = false;
         sprite = GetComponent<SpriteRenderer>();
+        ani = GetComponent<Animator>();
         checkPointPos = gameObject.transform.position;
+
     }
 
     // Update is called once per frame
@@ -35,7 +38,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && passed == false)
         {
-            sprite.color = Color.green;
+            ani.SetBool("FlagRaise", true);
             passed = true;
         }
     }
