@@ -136,6 +136,7 @@ public class PlayerMonkey : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && onGround)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPow);
+            animator.SetBool("IsJumping", true);
         }
         else if (Input.GetKeyDown(KeyCode.Space) && !onGround && hasDoubleJump)
         {
@@ -216,6 +217,8 @@ public class PlayerMonkey : MonoBehaviour
         {
             onGround = true;
             hasDoubleJump = true;
+
+            animator.SetBool("IsJumping", false);
         }
     }
 
