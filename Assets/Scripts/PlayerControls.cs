@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-	private float moveHorizontal;
-	private float runSpeed = 4.0f;
+	private float runSpeed = 5.0f;
 
-	private float jumpPow = 7.0f;
+	private float jumpPow = 6.0f;
 
-	private float dodgeSpeed = 10.0f;
+	private float dodgeSpeed = 15.0f;
 	private float dodgeDuration = 0.2f;
 	private float dodgeCooldown = 1.0f;
 	private float dodgeTimer;
@@ -31,55 +30,29 @@ public class PlayerControls : MonoBehaviour
 
 	private SpriteRenderer spriteRenderer;
 
-	Animator animator;
-
-	private GameObject rightSlash;
-
-	private GameObject leftSlash;
-
 	// Start is called before the first frame update
 	void Start()
 	{
 		rigidBody = GetComponent<Rigidbody2D>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
-		animator = GetComponent<Animator>();
-		rightSlash = GameObject.Find("Right Slash");
-		leftSlash = GameObject.Find("Left Slash");
-
-		rightSlash.gameObject.SetActive(false);
-		leftSlash.gameObject.SetActive(false);
-
-		attacking = false;
 		dodging = false;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		moveHorizontal = Input.GetAxis("Horizontal");
-
-		// Flip character sprite based on movement direction
-		if (moveHorizontal > 0) // Moving right
-		{
-			GetComponent<SpriteRenderer>().flipX = false;
-		}
-		else if (moveHorizontal < 0) // Moving left
-		{
-			GetComponent<SpriteRenderer>().flipX = true;
-		}
-
 		if (!dodging)
 		{
 			PlayerMove();
 			Jump();
 		}
 
-		if (Input.GetKeyDown(KeyCode.E) && Time.time >= dodgeTimer)
+		if (Input.GetKeyDown(KeyCode.B) && Time.time >= dodgeTimer)
 		{
 			StartCoroutine(Dodge());
 		}
 
-		if (Input.GetKeyDown(KeyCode.Q) && Time.time >= attackTimer)
+		if(Input.GetKeyDown(KeyCode.Q) && Time.time >= attackTimer)
 		{
 			StartCoroutine(Attack());
 		}
@@ -87,9 +60,6 @@ public class PlayerControls : MonoBehaviour
 		NumberCheck();
 
 		/*ColourCheck();*/
-
-		animator.SetFloat("xVelocity", Mathf.Abs(moveHorizontal));
-		rigidBody.velocity = new Vector2(moveHorizontal * runSpeed, rigidBody.velocity.y);
 	}
 
 	private void NumberCheck()
@@ -134,14 +104,6 @@ public class PlayerControls : MonoBehaviour
 
 	private void PlayerMove()
 	{
-		if (attacking)
-		{
-			runSpeed = 0.5f;
-		}
-		else if (!attacking)
-		{
-			runSpeed = 4.0f;
-		}
 		float playerInput = Input.GetAxis("Horizontal");
 		rigidBody.velocity = new Vector2(playerInput * runSpeed, rigidBody.velocity.y);
 	}
@@ -162,7 +124,6 @@ public class PlayerControls : MonoBehaviour
 	private IEnumerator Dodge()
 	{
 		dodging = true;
-		runSpeed = 0f;
 		dodgeTimer = Time.time + dodgeCooldown;
 
 		float moveInput = Input.GetAxis("Horizontal");
@@ -174,9 +135,8 @@ public class PlayerControls : MonoBehaviour
 
 		yield return new WaitForSeconds(dodgeDuration);
 
-		rigidBody.gravityScale = 2;
+		rigidBody.gravityScale = 1;
 		dodging = false;
-		runSpeed = 4.0f;
 	}
 
 	private IEnumerator Attack()
@@ -193,15 +153,6 @@ public class PlayerControls : MonoBehaviour
 			attackSpeed = 30.0f;
 		}
 
-		if (GetComponent<SpriteRenderer>().flipX == false)
-        {
-			rightSlash.SetActive(true);
-		}else if(GetComponent<SpriteRenderer>().flipX)
-        {
-			leftSlash.SetActive(true);
-        }
-		
-
 		attacking = true;
 		attackTimer = Time.time + attackCooldown;
 
@@ -214,11 +165,8 @@ public class PlayerControls : MonoBehaviour
 
 		yield return new WaitForSeconds(attackDuration);
 
-		rigidBody.gravityScale = 2;
+		rigidBody.gravityScale = 1;
 		attacking = false;
-
-		rightSlash.SetActive(false);
-		leftSlash.SetActive(false);
 
 		if (attackCount == 3)
 		{
@@ -228,17 +176,18 @@ public class PlayerControls : MonoBehaviour
 		{
 			attackCount++;
 		}
+		Debug.Log(attackCount);
 
 		spriteRenderer.color = Color.white;
 	}
 
-	private Vector2 GetDirection(float moveInput)
-	{
-		Vector2 playerDirection = new Vector2(Mathf.Sign(moveInput), 0).normalized;
-		return playerDirection;
-	}
+    private Vector2 GetDirection(float moveInput)
+    {
+        Vector2 playerDirection = new Vector2(Mathf.Sign(moveInput), 0).normalized;
+        return playerDirection;
+    }
 
-	void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.contacts[0].normal.y > 0.5f)
 		{
