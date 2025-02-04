@@ -5,16 +5,16 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     private bool passed;
-    private SpriteRenderer sprite;
     private Vector2 checkPointPos;
     private Animator animator;
+    private PlayerBehaviour player;
 
     // Start is called before the first frame update
     void Start()
     {
         passed = false;
-        sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
         checkPointPos = gameObject.transform.position;
 
     }
@@ -41,6 +41,8 @@ public class CheckPoint : MonoBehaviour
         {
             animator.SetBool("FlagRaise", true);
             passed = true;
+            player.setCheckPointPos(checkPointPos);
+
         }
     }
 }
