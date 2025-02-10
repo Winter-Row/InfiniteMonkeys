@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8911591326315251093}
   - component: {fileID: 6704412058763752419}
   m_Layer: 0
-  m_Name: LeftSlash
+  m_Name: Right Slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8532242596565732145}
   - component: {fileID: 7679942131159066439}
   m_Layer: 0
-  m_Name: RightSlash
+  m_Name: Left Slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,8 +322,8 @@ GameObject:
   - component: {fileID: 8707085921094636253}
   - component: {fileID: 8707085921094636322}
   - component: {fileID: 8707085921094636323}
-  - component: {fileID: 8707085921094636320}
   - component: {fileID: 8707085921094636254}
+  - component: {fileID: 8159880387230628686}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -483,18 +483,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8707085921094636320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8707085921094636321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c764dc9ae52343540a108b84f6ed1693, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8707085921094636254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,6 +493,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dd9cd55f011a80458aee3a239c24db0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8159880387230628686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707085921094636321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30b64e86f2a4b4458871f7381659639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8707085921217327016

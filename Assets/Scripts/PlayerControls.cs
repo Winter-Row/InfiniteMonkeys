@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour
 {
 	private float runSpeed = 5.0f;
-
-	private float jumpPow = 6.0f;
+    private float moveHorizontal;
+    private float jumpPow = 6.0f;
 
 	private float dodgeSpeed = 15.0f;
 	private float dodgeDuration = 0.2f;
@@ -30,18 +30,40 @@ public class PlayerControls : MonoBehaviour
 
 	private SpriteRenderer spriteRenderer;
 
-	// Start is called before the first frame update
-	void Start()
+    Animator animator;
+
+    private GameObject rightSlash;
+    private GameObject leftSlash;
+
+    // Start is called before the first frame update
+    void Start()
 	{
 		rigidBody = GetComponent<Rigidbody2D>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
-		dodging = false;
+        animator = GetComponent<Animator>();
+        rightSlash = GameObject.Find("Right Slash");
+        leftSlash = GameObject.Find("Left Slash");
+        rightSlash.gameObject.SetActive(false);
+        leftSlash.gameObject.SetActive(false);
+        attacking = false;
+        dodging = false;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (!dodging)
+        moveHorizontal = Input.GetAxis("Horizontal");
+        // Flip character sprite based on movement direction
+        if (moveHorizontal > 0) // Moving right
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if (moveHorizontal < 0) // Moving left
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+        if (!dodging)
 		{
 			PlayerMove();
 			Jump();
@@ -59,8 +81,10 @@ public class PlayerControls : MonoBehaviour
 
 		NumberCheck();
 
-		/*ColourCheck();*/
-	}
+        /*ColourCheck();*/
+        animator.SetFloat("xVelocity", Mathf.Abs(moveHorizontal));
+        rigidBody.velocity = new Vector2(moveHorizontal * runSpeed, rigidBody.velocity.y);
+    }
 
 	private void NumberCheck()
 	{
@@ -104,7 +128,15 @@ public class PlayerControls : MonoBehaviour
 
 	private void PlayerMove()
 	{
-		float playerInput = Input.GetAxis("Horizontal");
+        if (attacking)
+        {
+            runSpeed = 0.5f;
+        }
+        else if (!attacking)
+        {
+            runSpeed = 4.0f;
+        }
+        float playerInput = Input.GetAxis("Horizontal");
 		rigidBody.velocity = new Vector2(playerInput * runSpeed, rigidBody.velocity.y);
 	}
 
@@ -124,7 +156,8 @@ public class PlayerControls : MonoBehaviour
 	private IEnumerator Dodge()
 	{
 		dodging = true;
-		dodgeTimer = Time.time + dodgeCooldown;
+        runSpeed = 0f;
+        dodgeTimer = Time.time + dodgeCooldown;
 
 		float moveInput = Input.GetAxis("Horizontal");
 		Vector2 dodgeDirection = GetDirection(moveInput);
@@ -135,13 +168,16 @@ public class PlayerControls : MonoBehaviour
 
 		yield return new WaitForSeconds(dodgeDuration);
 
-		rigidBody.gravityScale = 1;
-		dodging = false;
-	}
+        rigidBody.gravityScale = 2;
+        dodging = false;
+        runSpeed = 4.0f;
+    }
 
 	private IEnumerator Attack()
 	{
-		if (attackCount < 3)
+
+
+        if (attackCount < 3)
 		{
 			spriteRenderer.color = Color.red;
 			attackSpeed = 0;
@@ -153,7 +189,16 @@ public class PlayerControls : MonoBehaviour
 			attackSpeed = 30.0f;
 		}
 
-		attacking = true;
+        if (GetComponent<SpriteRenderer>().flipX == false)
+        {
+            rightSlash.SetActive(true);
+        }
+        else if (GetComponent<SpriteRenderer>().flipX)
+        {
+            leftSlash.SetActive(true);
+        }
+
+        attacking = true;
 		attackTimer = Time.time + attackCooldown;
 
 		float moveInput = Input.GetAxis("Horizontal");
@@ -165,10 +210,13 @@ public class PlayerControls : MonoBehaviour
 
 		yield return new WaitForSeconds(attackDuration);
 
-		rigidBody.gravityScale = 1;
+		rigidBody.gravityScale = 2;
 		attacking = false;
 
-		if (attackCount == 3)
+        rightSlash.SetActive(false);
+        leftSlash.SetActive(false);
+
+        if (attackCount == 3)
 		{
 			attackCount = 1;
 		}
@@ -176,7 +224,6 @@ public class PlayerControls : MonoBehaviour
 		{
 			attackCount++;
 		}
-		Debug.Log(attackCount);
 
 		spriteRenderer.color = Color.white;
 	}
