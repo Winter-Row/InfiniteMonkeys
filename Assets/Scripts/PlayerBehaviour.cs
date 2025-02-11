@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    public GameObject deadCharacter;
+
     private CheckPoint checkPoint;
     private Vector2 checkPointPos;
     private int health;
@@ -32,7 +34,6 @@ public class PlayerBehaviour : MonoBehaviour
     public void setCheckPointPos(Vector2 pos)
     {
         checkPointPos = pos;
-        Debug.Log(checkPointPos);
     }
 
     public void respawnPlayer()
@@ -45,6 +46,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void onDeath()
     {
+        Instantiate(deadCharacter, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
         respawnPlayer();
+        
     }
 }
