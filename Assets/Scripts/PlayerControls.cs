@@ -47,6 +47,7 @@ public class PlayerControls : MonoBehaviour
         leftSlash.gameObject.SetActive(false);
         attacking = false;
         dodging = false;
+		rigidBody.gravityScale = 2;
 	}
 
 	// Update is called once per frame
@@ -79,7 +80,12 @@ public class PlayerControls : MonoBehaviour
 			StartCoroutine(Attack());
 		}
 
-		NumberCheck();
+		if(Input.GetKeyDown(KeyCode.DownArrow) && Time.time >= dodgeTimer)
+		{
+			Stomp();
+		}
+
+		/*NumberCheck();*/
 
         /*ColourCheck();*/
         animator.SetFloat("xVelocity", Mathf.Abs(moveHorizontal));
@@ -175,8 +181,6 @@ public class PlayerControls : MonoBehaviour
 
 	private IEnumerator Attack()
 	{
-
-
         if (attackCount < 3)
 		{
 			spriteRenderer.color = Color.red;
@@ -233,6 +237,14 @@ public class PlayerControls : MonoBehaviour
         Vector2 playerDirection = new Vector2(Mathf.Sign(moveInput), 0).normalized;
         return playerDirection;
     }
+
+	private void Stomp()
+	{
+		if (!onGround)
+		{
+			rigidBody.velocity = new Vector2(rigidBody.velocity.x, -50.0f);
+		}
+	}
 
     void OnCollisionEnter2D(Collision2D collision)
 	{
