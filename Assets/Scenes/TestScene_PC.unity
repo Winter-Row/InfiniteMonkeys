@@ -1193,7 +1193,7 @@ GameObject:
   - component: {fileID: 356000705}
   - component: {fileID: 356000704}
   - component: {fileID: 356000706}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Rope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
