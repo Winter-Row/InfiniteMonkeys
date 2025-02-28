@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
 {
-	private float runSpeed = 5.0f;
+	private float runSpeed = 8.0f;
     private float moveHorizontal;
-    private float jumpPow = 6.0f;
+    private float jumpPow = 15.0f;
 
-	private float dodgeSpeed = 15.0f;
-	private float dodgeDuration = 0.2f;
+	private float dodgeSpeed = 30.0f;
+	private float dodgeDuration = 0.7f;
 	private float dodgeCooldown = 1.0f;
 	private float dodgeTimer;
 
@@ -83,7 +83,16 @@ public class PlayerControls : MonoBehaviour
 		{
 			climbing = false;
 		}
-    }
+
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			rigidBody.gravityScale = 1f;
+		}
+		else
+		{
+			rigidBody.gravityScale = 5f;
+		}
+	}
 
 	private void IsClimbing()
 	{
@@ -184,7 +193,7 @@ public class PlayerControls : MonoBehaviour
         }
         else if (!attacking)
         {
-            runSpeed = 4.0f;
+            runSpeed = 8.0f;
         }
         float playerInput = Input.GetAxis("Horizontal");
 		rigidBody.velocity = new Vector2(playerInput * runSpeed, rigidBody.velocity.y);
