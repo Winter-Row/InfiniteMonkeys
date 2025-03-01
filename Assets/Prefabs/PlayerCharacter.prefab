@@ -698,6 +698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadCharacter: {fileID: 6698151191819086585, guid: 18bf78aa206502c479ceac5e31e40ba8, type: 3}
+  Banner: {fileID: 7905435170582443519, guid: 222275178c091e747ac763c9a7a4b5ae, type: 3}
 --- !u!114 &8159880387230628686
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
     public GameObject deadCharacter;
+    public GameObject Banner;
 
     private CheckPoint checkPoint;
     private Spawn spawn;
@@ -59,5 +61,10 @@ public class PlayerBehaviour : MonoBehaviour
         Instantiate(deadCharacter, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
         respawnPlayer();
         
+    }
+    
+    public void displayBanner()
+    {
+        Instantiate(Banner, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
     }
 }

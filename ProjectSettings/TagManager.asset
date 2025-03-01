@@ -9,6 +9,7 @@ TagManager:
   - Room
   - Spawn
   - SpawnRoom
+  - Banner
   layers:
   - Default
   - TransparentFX
