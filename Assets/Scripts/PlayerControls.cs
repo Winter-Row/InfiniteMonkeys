@@ -9,11 +9,11 @@ public class PlayerControls : MonoBehaviour
     private float jumpPow = 15.0f;
 
 	private float dodgeSpeed = 30.0f;
-	private float dodgeDuration = 0.7f;
+	private float dodgeDuration = 0.2f;
 	private float dodgeCooldown = 1.0f;
 	private float dodgeTimer;
 
-	private float attackSpeed = 10.0f;
+	private float attackSpeed = 1.0f;
 	private float attackDuration = 0.1f;
 	private float attackCooldown = 0.5f;
 	private float attackTimer;
@@ -215,65 +215,72 @@ public class PlayerControls : MonoBehaviour
 	private IEnumerator Dodge()
 	{
 		dodging = true;
-        runSpeed = 0f;
-        dodgeTimer = Time.time + dodgeCooldown;
+		runSpeed = 0f;
+		dodgeTimer = Time.time + dodgeCooldown;
 
-		float moveInput = Input.GetAxis("Horizontal");
+		float moveInput = Input.GetAxisRaw("Horizontal");
 		Vector2 dodgeDirection = GetDirection(moveInput);
 
-		rigidBody.velocity = new Vector2(dodgeDirection.x * dodgeSpeed, 0);
+		// Move the player instantly
+		transform.position += (Vector3)(dodgeDirection * 5);
 
+		// Temporarily disable gravity
 		rigidBody.gravityScale = 0;
 
 		yield return new WaitForSeconds(dodgeDuration);
 
-        rigidBody.gravityScale = 2;
-        dodging = false;
-        runSpeed = 4.0f;
-    }
+		// Restore gravity and normal movement
+		rigidBody.gravityScale = 5;
+		dodging = false;
+		runSpeed = 8.0f;
+	}
 
 	private IEnumerator Attack()
 	{
-        if (attackCount < 3)
+		if (attackCount < 3)
 		{
 			spriteRenderer.color = Color.red;
-			attackSpeed = 0;
+			attackSpeed = 1.0f;
 		}
-
 		else if (attackCount == 3)
 		{
 			spriteRenderer.color = Color.cyan;
-			attackSpeed = 30.0f;
+			attackSpeed = 2.0f;
 		}
 
-        if (GetComponent<SpriteRenderer>().flipX == false)
-        {
-            rightSlash.SetActive(true);
-        }
-        else if (GetComponent<SpriteRenderer>().flipX)
-        {
-            leftSlash.SetActive(true);
-        }
+		if (GetComponent<SpriteRenderer>().flipX == false)
+		{
+			rightSlash.SetActive(true);
+		}
+		else
+		{
+			leftSlash.SetActive(true);
+		}
 
-        attacking = true;
+		attacking = true;
 		attackTimer = Time.time + attackCooldown;
 
-		float moveInput = Input.GetAxis("Horizontal");
+		float moveInput = Input.GetAxisRaw("Horizontal");
 		Vector2 attackDirection = GetDirection(moveInput);
-
-		rigidBody.velocity = new Vector2(attackDirection.x * attackSpeed, 0);
+		Vector2 startPosition = rigidBody.position;
+		Vector2 targetPosition = startPosition + attackDirection * attackSpeed;
 
 		rigidBody.gravityScale = 0;
 
-		yield return new WaitForSeconds(attackDuration);
+		float elapsedTime = 0f;
+		while (elapsedTime < attackDuration)
+		{
+			elapsedTime += Time.deltaTime;
+			rigidBody.MovePosition(Vector2.Lerp(startPosition, targetPosition, elapsedTime / attackDuration));
+			yield return null;
+		}
 
 		rigidBody.gravityScale = 2;
 		attacking = false;
+		rightSlash.SetActive(false);
+		leftSlash.SetActive(false);
 
-        rightSlash.SetActive(false);
-        leftSlash.SetActive(false);
-
-        if (attackCount == 3)
+		if (attackCount == 3)
 		{
 			attackCount = 1;
 		}
@@ -282,15 +289,11 @@ public class PlayerControls : MonoBehaviour
 			attackCount++;
 		}
 
-		if (canClimb && Input.GetKey(KeyCode.UpArrow))
-		{
-
-		}
-
 		spriteRenderer.color = Color.white;
 	}
 
-    private Vector2 GetDirection(float moveInput)
+
+	private Vector2 GetDirection(float moveInput)
     {
         Vector2 playerDirection = new Vector2(Mathf.Sign(moveInput), 0).normalized;
         return playerDirection;
