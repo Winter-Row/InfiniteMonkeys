@@ -21,6 +21,8 @@ public class FinishedLevel : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerBehaviour>().displayBanner();
+            collision.gameObject.GetComponent<PlayerControls>().SetVelocity(0, 0);
+            collision.gameObject.GetComponent<PlayerControls>().SetSpriteVolcity(0);
             collision.gameObject.GetComponent<PlayerControls>().enabled = false;
         }
     }

@@ -361,6 +361,18 @@ public class PlayerControls : MonoBehaviour
 		}
 	}
 
+	//public method to set the run speed with a provided value speed
+	public void SetVelocity(float speedx, float speedy)
+	{
+		rigidBody.velocity = new Vector2(speedx,speedy);
+	}
+	//public method for chaning the xVelocity sprite condition
+	public void SetSpriteVolcity(float volocity)
+	{
+		animator.SetFloat("xVelocity", volocity);
+    }
+    
+
     void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.contacts[0].normal.y > 0.5f)
