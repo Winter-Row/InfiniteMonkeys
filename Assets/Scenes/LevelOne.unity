@@ -158,7 +158,7 @@ MonoBehaviour:
   finishRoom: {fileID: 4920457829009572992, guid: 1d10275000881444e858ed2d1780c296, type: 3}
   rooms: []
   roomCount: 0
-  roomsToGenerate: 4
+  roomsToGenerate: 6
   generatedRooms: []
 --- !u!4 &729632382
 Transform:
