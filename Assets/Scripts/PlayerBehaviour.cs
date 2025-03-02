@@ -12,13 +12,13 @@ public class PlayerBehaviour : MonoBehaviour
     private CheckPoint checkPoint;
     private Spawn spawn;
     private Vector2 checkPointPos;
-    private int health;
+    private int lives;
     // Start is called before the first frame update
     void Start()
     {
         checkPoint = GameObject.FindGameObjectWithTag("CheckPoint").GetComponent<CheckPoint>();
         spawn = GameObject.FindGameObjectWithTag("Spawn").GetComponent<Spawn>();
-        health = 100;
+        lives = 15;
     }
 
     // Update is called once per frame
@@ -29,8 +29,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void loseHealth(int dmg)
     {
-        health -= dmg;
-        if(health < 0)
+        lives -= dmg;
+        if(lives < 0)
         {
             onDeath();
         }
@@ -50,18 +50,27 @@ public class PlayerBehaviour : MonoBehaviour
         else
         {
             //for when lives are implemented
-            //gameObject.transform.position = new Vector2(spawn.transform.position.x, spawn.transform.position.y);
+            gameObject.transform.position = new Vector2(spawn.transform.position.x, spawn.transform.position.y);
             //for now when player dies take back to the menu
-            SceneManager.LoadScene(0);
+            /*SceneManager.LoadScene(0);*/
         }
     }
 
     public void onDeath()
     {
-        Instantiate(deadCharacter, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
-        respawnPlayer();
-        
-    }
+        if (lives > 0)
+        {
+            Instantiate(deadCharacter, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
+            respawnPlayer();
+            lives -= 1;
+            Debug.Log(lives);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
+
+	}
     
     public void displayBanner()
     {
