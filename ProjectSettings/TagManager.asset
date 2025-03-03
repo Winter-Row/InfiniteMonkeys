@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - CheckPoint
+  - Passthrough
+  - Room
+  - Spawn
+  - SpawnRoom
+  - Banner
+  - Cabinet
   layers:
   - Default
   - TransparentFX
@@ -13,9 +19,9 @@ TagManager:
   - Water
   - UI
   - CheckPoint
-  - 
-  - 
-  - 
+  - Climable
+  - Pass-Through
+  - Interactable
   - 
   - 
   - 
@@ -41,4 +47,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 1754428593
     locked: 0
