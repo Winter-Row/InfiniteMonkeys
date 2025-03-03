@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2604976517575352108}
   - component: {fileID: 5115067531785432297}
   m_Layer: 0
-  m_Name: Cabnet
-  m_TagString: Untagged
+  m_Name: Cabinet
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

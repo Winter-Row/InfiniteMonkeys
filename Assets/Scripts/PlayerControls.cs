@@ -417,6 +417,15 @@ public class PlayerControls : MonoBehaviour
 			Debug.Log("Can climb");
 			canClimb = true;
 		}
+
+		//Not functioning may need to remove
+		if(collision.gameObject.tag == "Cabinet")
+		{
+			if (Input.GetKeyDown(KeyCode.F))
+			{
+				Debug.Log("Open");
+			}
+		}
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
