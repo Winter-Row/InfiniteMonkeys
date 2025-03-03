@@ -18,6 +18,9 @@ public class DeathArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.GetComponent<PlayerBehaviour>().RespawnPlayer();
+        if(collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerBehaviour>().onDeath();
+        }
     }
 }
