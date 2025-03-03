@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5151944076582247289}
   - component: {fileID: 2604976517575352108}
   - component: {fileID: 5115067531785432297}
-  m_Layer: 0
+  - component: {fileID: 5091970633468210667}
+  m_Layer: 9
   m_Name: Cabinet
   m_TagString: Cabinet
   m_Icon: {fileID: 0}
@@ -125,6 +126,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ddc4dcc505e0e048bd379efcf0d6f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &5091970633468210667
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2929785602619682900}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d397626f5f224a549a39cac860287e31, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7394820642174543149
 GameObject:
   m_ObjectHideFlags: 0
