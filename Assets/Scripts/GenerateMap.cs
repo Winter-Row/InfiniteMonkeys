@@ -33,6 +33,6 @@ public class GenerateMap : MonoBehaviour
             roomCount++;
         }
 
-        newRoom = Instantiate(finishRoom, new Vector3(lastRoom.transform.position.x + lastRoom.width, lastRoom.transform.position.y, 0), Quaternion.identity);
+        newRoom = Instantiate(finishRoom, new Vector3(lastRoom.transform.position.x + (lastRoom.width / 2) + (finishRoom.width / 2), lastRoom.transform.position.y, 0), Quaternion.identity);
     }
 }
