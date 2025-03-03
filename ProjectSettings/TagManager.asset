@@ -10,6 +10,7 @@ TagManager:
   - Spawn
   - SpawnRoom
   - Banner
+  - Cabinet
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - CheckPoint
   - Climable
   - Pass-Through
-  - 
+  - Interactable
   - 
   - 
   - 
