@@ -28,7 +28,10 @@ public class Cabinet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        prompt.SetActive(true);
+        if(opened == false)
+        {
+            prompt.SetActive(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -42,7 +45,8 @@ public class Cabinet : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F) && !opened)
             {
                 animator.SetBool("Break", true);
-                setOpened(false);
+                prompt.SetActive(false);
+                setOpened(true);
                 Debug.Log("Open");
             }
         }
