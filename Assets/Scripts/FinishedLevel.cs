@@ -18,12 +18,11 @@ public class FinishedLevel : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //checks the collided game object to see if it has the player tag
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerBehaviour>().displayBanner();
-            collision.gameObject.GetComponent<PlayerControls>().SetVelocity(0, 0);
-            collision.gameObject.GetComponent<PlayerControls>().SetSpriteVolcity(0);
-            collision.gameObject.GetComponent<PlayerControls>().enabled = false;
+            //if the player tag is detected call the Pause Player Function
+            collision.gameObject.GetComponent<PlayerBehaviour>().PausePlayer();
         }
     }
 }
