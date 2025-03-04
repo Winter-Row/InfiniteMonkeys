@@ -882,8 +882,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topSocket: 0
   bottomSocket: 0
-  rightSocket: 1
-  leftSocket: 1
+  rightSocket: -1
+  leftSocket: 2
   height: 10
   width: 18
   inDoor: 0
