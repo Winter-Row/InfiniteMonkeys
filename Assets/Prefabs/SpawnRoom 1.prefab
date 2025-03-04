@@ -1380,7 +1380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topSocket: 0
   bottomSocket: 0
-  rightSocket: 1
+  rightSocket: -3
   leftSocket: 0
   height: 10
   width: 14
