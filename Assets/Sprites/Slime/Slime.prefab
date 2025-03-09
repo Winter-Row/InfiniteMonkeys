@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3413194751672582992}
   - component: {fileID: -5158420866513132165}
   - component: {fileID: 4049383317809249191}
+  - component: {fileID: -5157386177568197112}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -143,17 +144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolSpeed: 1
-  chaseSpeed: 2
-  detectionRange: 6
-  attackRange: 1.5
-  attackCooldown: 1
-  health: 1
   groundCheck: {fileID: 0}
   wallCheck: {fileID: 0}
   groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  playerLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!61 &4049383317809249191
@@ -181,4 +174,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1.09, y: 0.72}
+  m_EdgeRadius: 0
+--- !u!61 &-5157386177568197112
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3243498238219119421}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.6, y: 1.25}
+    newSize: {x: 0.32, y: 0.25}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 1.25}
   m_EdgeRadius: 0
