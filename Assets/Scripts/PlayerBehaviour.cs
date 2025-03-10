@@ -85,7 +85,7 @@ public class PlayerBehaviour : MonoBehaviour
             //calls the respawnPlayer() method
             respawnPlayer();
             //calls the LoseLife() method
-            LoseLife();
+            lives--;
             Debug.Log(lives);
         }
         else

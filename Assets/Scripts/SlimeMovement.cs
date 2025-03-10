@@ -12,6 +12,8 @@ public class SlimeMovement : MonoBehaviour
     private Animator animator;
     private float patrolTime = 0f;
 
+    public int health = 20;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -62,6 +64,11 @@ public class SlimeMovement : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerBehaviour>().onDeath();
+        }
+
+        else if(collision.CompareTag("Attack"))
+        {
+            health -= collision.gameObject.GetComponent<Attack>().getDamage();
         }
     }
 }

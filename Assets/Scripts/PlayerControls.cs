@@ -271,7 +271,7 @@ public class PlayerControls : MonoBehaviour
 		while (elapsedTime < attackDuration)
 		{
 			elapsedTime += Time.deltaTime;
-			rigidBody.MovePosition(Vector2.Lerp(startPosition, targetPosition, elapsedTime / attackDuration));
+			/*rigidBody.MovePosition(Vector2.Lerp(startPosition, targetPosition, elapsedTime / attackDuration));*/
 			yield return null;
 		}
 
