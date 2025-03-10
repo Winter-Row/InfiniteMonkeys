@@ -10,7 +10,7 @@ public class Menu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        level = 1;    
+        level = 1;
     }
 
     // Update is called once per frame
@@ -26,7 +26,13 @@ public class Menu : MonoBehaviour
 
     public void LoadMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
+    }
+
+    public void LoadOptions()
+    {
+        Debug.Log("Options is W.I.P");
     }
 
     public void exitGame()

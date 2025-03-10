@@ -11,6 +11,7 @@ TagManager:
   - SpawnRoom
   - Banner
   - Cabinet
+  - Options
   layers:
   - Default
   - TransparentFX
