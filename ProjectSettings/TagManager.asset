@@ -12,6 +12,8 @@ TagManager:
   - Banner
   - Cabinet
   - Options
+  - Attack
+  - MenuBtns
   layers:
   - Default
   - TransparentFX
