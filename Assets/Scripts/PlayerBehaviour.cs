@@ -9,16 +9,17 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject deadCharacter;
     public GameObject Banner;
 
-    private CheckPoint checkPoint;
+    private bool checkPoint;
     private Spawn spawn;
     private Vector2 checkPointPos;
     private int lives;
+
     // Start is called before the first frame update
     void Start()
     {
-        checkPoint = GameObject.FindGameObjectWithTag("CheckPoint").GetComponent<CheckPoint>();
-        spawn = GameObject.FindGameObjectWithTag("Spawn").GetComponent<Spawn>();
         lives = 15;
+        checkPoint = false;
+        spawn = GameObject.FindGameObjectWithTag("Spawn").GetComponent<Spawn>();
     }
 
     // Update is called once per frame
@@ -45,11 +46,13 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     /*
-     * Takes in a Vector2 value to be assiged to the checkPointPos variable
+     * Sets the values used for checking if the player has passed a checkpoint
+     * and what the last passed checkpoint position is.
     */
-    public void setCheckPointPos(Vector2 pos)
+    public void SetCheckpoint(Vector2 pos)
     {
-        checkPointPos = pos;//assign checkPointPos a new given vector2 for the position
+        checkPoint = true;
+        checkPointPos = pos;
     }
 
     /*
@@ -60,7 +63,7 @@ public class PlayerBehaviour : MonoBehaviour
      */
     public void respawnPlayer()
     {
-        if (checkPoint.checkCheckPointed())
+        if (checkPoint)
         {
             //Changes the position of the character to a new Vector2 position which uses the x and y position of the passed checkpoint
             gameObject.transform.position = new Vector2(checkPointPos.x, checkPointPos.y);

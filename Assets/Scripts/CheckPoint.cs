@@ -25,23 +25,13 @@ public class CheckPoint : MonoBehaviour
     
     }
 
-    public Vector2 getCheckPointPos()
-    {
-        return checkPointPos;
-    }
-
-    public bool checkCheckPointed()
-    {
-        return passed;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" && passed == false)
         {
             animator.SetBool("FlagRaise", true);
             passed = true;
-            player.setCheckPointPos(checkPointPos);
+            player.SetCheckpoint(checkPointPos);
 
         }
     }
