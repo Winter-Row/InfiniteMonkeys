@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+
+  tags:
+  - CheckPoint
+  - Passthrough
+  - Room
+  - Spawn
+  - SpawnRoom
+  - Banner
+  - Cabinet
+  - Options
+  - Attack
+  - MenuBtns
+
   layers:
   - Default
   - TransparentFX
@@ -11,32 +23,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - CheckPoint
+  - Climable
+  - Pass-Through
+  - Interactable
+
   m_SortingLayers:
   - name: Default
     uniqueID: 0

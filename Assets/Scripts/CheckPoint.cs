@@ -14,7 +14,7 @@ public class CheckPoint : MonoBehaviour
     {
         passed = false;
         animator = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
+        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
         checkPointPos = gameObject.transform.position;
 
     }
@@ -25,23 +25,14 @@ public class CheckPoint : MonoBehaviour
     
     }
 
-    public Vector2 getCheckPointPos()
-    {
-        return checkPointPos;
-    }
-
-    public bool checkCheckPointed()
-    {
-        return passed;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
         if (collision.gameObject.tag == "Player" && passed == false)
         {
             animator.SetBool("FlagRaise", true);
             passed = true;
-            player.setCheckPointPos(checkPointPos);
+            player.SetCheckpoint(checkPointPos);
 
         }
     }
