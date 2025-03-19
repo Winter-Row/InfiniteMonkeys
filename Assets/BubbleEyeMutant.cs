@@ -126,7 +126,7 @@ public class BubbleEyeMutant : MonoBehaviour
         if (collision.CompareTag("Player") && !isAttacking)
         {
             Attack();
-            collision.gameObject.GetComponent<PlayerBehaviour>().onDeath();
+            collision.gameObject.GetComponent<PlayerBehaviour>().OnDeath();
         }
     }
 

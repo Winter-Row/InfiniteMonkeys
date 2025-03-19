@@ -160,11 +160,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   detectionRange: 1.5
-  attackRange: 0.8
   player: {fileID: 8707085921094636255, guid: 04e24732f3c3178428dae41870335bda, type: 3}
   groundCheck: {fileID: 0}
   wallCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  health: 2
+  health: 100
+  groundCheckRadius: 0.2
