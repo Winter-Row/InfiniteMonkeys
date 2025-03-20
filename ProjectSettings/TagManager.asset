@@ -14,6 +14,7 @@ TagManager:
   - Options
   - Attack
   - MenuBtns
+  - Enemy
   layers:
   - Default
   - TransparentFX
