@@ -36,33 +36,59 @@ public class GenerateMap : MonoBehaviour
         {
             Debug.Log("Name: " + lastRoom.transform.name + "Position: " + lastRoom.transform.position.x + "width: " + lastRoom.width);
       
+            List<Room> validRooms = new List<Room>();
+
+            if(lastRoom.leftSocket > 0)
+            {
+                validRooms = rooms2.Where(room => room.leftSocket >= 0).ToList();
+            }
+            else if(lastRoom.rightSocket > 0)
+            {
+                validRooms = rooms2.Where(room => room.rightSocket >= 0).ToList();
+            }
+            else if(lastRoom.topSocket > 0)
+            {
+                validRooms = rooms2.Where(room => room.topSocket >= 0).ToList();
+            }
+            else if(lastRoom.bottomSocket > 0)
+            {
+                validRooms = rooms2.Where(room => room.topSocket >= 0).ToList();
+            }
+            else
+            {
+                validRooms = rooms2;
+            }
+
+            Debug.Log("Valid Rooms: " + validRooms.Count);
+
+
             String doorSide;
             if(lastRoom.leftSocket < 0)
             {
                 doorSide = "left";
-                List<Room> validRooms = rooms2.Where(room => room.rightSocket == Math.Abs(lastRoom.leftSocket)).ToList();
-                Room currentRoom = (Room)validRooms[UnityEngine.Random.Range(0, validRooms.Count)];
+                List<Room> validRooms2 = validRooms.Where(room => room.rightSocket == Math.Abs(lastRoom.leftSocket)).ToList();
+                Room currentRoom = (Room)validRooms2[UnityEngine.Random.Range(0, validRooms2.Count)];
                 newRoom = (Room)Instantiate(currentRoom, new Vector3(lastRoom.transform.position.x - ((currentRoom.width / 2) + (lastRoom.width / 2)), lastRoom.transform.position.y - currentRoom.inDoor, 0), Quaternion.identity);
             }
             else if(lastRoom.rightSocket < 0)
             {
                 doorSide = "right";
-                List<Room> validRooms = rooms2.Where(room => room.leftSocket == Math.Abs(lastRoom.rightSocket)).ToList();
-                Room currentRoom = (Room)validRooms[UnityEngine.Random.Range(0, validRooms.Count)]; ;
+                List<Room> validRooms2 = validRooms.Where(room => room.leftSocket == Math.Abs(lastRoom.rightSocket)).ToList();
+                Room currentRoom = (Room)validRooms2[UnityEngine.Random.Range(0, validRooms2.Count)]; ;
                 newRoom = (Room)Instantiate(currentRoom, new Vector3(lastRoom.transform.position.x + lastRoom.width + ((currentRoom.width / 2) - (lastRoom.width / 2)), lastRoom.transform.position.y - currentRoom.inDoor, 0), Quaternion.identity);
             }
             else if(lastRoom.topSocket < 0)
             {
                 doorSide = "top";
-                List<Room> validRooms = rooms2.Where(room => room.bottomSocket == Math.Abs(lastRoom.topSocket)).ToList();
-                Room currentRoom = (Room)validRooms[UnityEngine.Random.Range(0, validRooms.Count)];
+                List<Room> validRooms2 = validRooms.Where(room => room.bottomSocket == Math.Abs(lastRoom.topSocket)).ToList();
+                Room currentRoom = (Room)validRooms2[UnityEngine.Random.Range(0, validRooms2.Count)];
                 newRoom = (Room)Instantiate(currentRoom, new Vector3(lastRoom.transform.position.x - currentRoom.inDoor, lastRoom.transform.position.y + lastRoom.height, 0), Quaternion.identity);
             }
             else if( lastRoom.bottomSocket < 0)
             {
                 doorSide = "bottom";
-                List<Room> validRooms = rooms2.Where(room => room.topSocket == Math.Abs(lastRoom.bottomSocket)).ToList();
-                Room currentRoom = (Room)validRooms[UnityEngine.Random.Range(0, validRooms.Count)];
+                List<Room> validRooms2 = validRooms.Where(room => room.topSocket == Math.Abs(lastRoom.bottomSocket)).ToList();
+                Room currentRoom = (Room)validRooms2[UnityEngine.Random.Range(0, validRooms2.Count)];
                 newRoom = (Room)Instantiate(currentRoom, new Vector3(lastRoom.transform.position.x - currentRoom.inDoor, lastRoom.transform.position.y - lastRoom.height, 0), Quaternion.identity);
             }
             else 
@@ -70,6 +96,8 @@ public class GenerateMap : MonoBehaviour
                 Debug.Log("No door found");
                 break;
             }
+
+            
             
             lastRoom = newRoom;
             generatedRooms.Add(newRoom);
