@@ -14,6 +14,7 @@ TagManager:
   - Options
   - Attack
   - MenuBtns
+  - TextPrompt
   layers:
   - Default
   - TransparentFX
