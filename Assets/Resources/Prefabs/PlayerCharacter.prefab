@@ -1042,6 +1042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deadCharacter: {fileID: 6698151191819086585, guid: 18bf78aa206502c479ceac5e31e40ba8, type: 3}
   Banner: {fileID: 7905435170582443519, guid: 222275178c091e747ac763c9a7a4b5ae, type: 3}
+  livesManager: {fileID: 9099186790517047899, guid: 2946b2160ffa29449967100af91c0d5b, type: 3}
 --- !u!114 &8159880387230628686
 MonoBehaviour:
   m_ObjectHideFlags: 0
