@@ -19,7 +19,11 @@ public class TutorialAreas : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        prompt.changePrompt();
-        gameObject.SetActive(false);
+        if(collision.gameObject.tag == "Player")
+        {
+            prompt.changePrompt();
+            gameObject.SetActive(false);
+        }
+
     }
 }

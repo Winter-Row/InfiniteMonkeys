@@ -3,19 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-
   tags:
-  - CheckPoint
-  - Passthrough
-  - Room
   - Spawn
-  - SpawnRoom
-  - Banner
-  - Cabinet
-  - Options
+  - Room
   - Attack
-  - MenuBtns
+  - Cabinet
   - TextPrompt
+  - SpawnRoom
+  - CheckPoint
   - Enemy
   layers:
   - Default
@@ -24,11 +19,32 @@ TagManager:
   - 
   - Water
   - UI
-  - CheckPoint
-  - Climable
-  - Pass-Through
-  - Interactable
-
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
