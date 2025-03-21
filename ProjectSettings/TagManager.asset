@@ -3,6 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+
   tags:
   - CheckPoint
   - Passthrough
@@ -15,6 +16,7 @@ TagManager:
   - Attack
   - MenuBtns
   - TextPrompt
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -26,32 +28,8 @@ TagManager:
   - Climable
   - Pass-Through
   - Interactable
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: background
-    uniqueID: 1754428593
     locked: 0

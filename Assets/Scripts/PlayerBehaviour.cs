@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,8 @@ public class PlayerBehaviour : MonoBehaviour
     private Spawn spawn;
     private Vector2 checkPointPos;
     private int lives;
+
+    public GameObject livesManager;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +30,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
 		if (Input.GetKeyDown(KeyCode.E))
 		{
-            onDeath();
+            OnDeath();
 		}
 	}
 
@@ -41,7 +44,7 @@ public class PlayerBehaviour : MonoBehaviour
         lives--;//decrement lives variable
         if(lives < 0)//check lives variable against 0
         {
-            onDeath();//call onDeath method
+            OnDeath();//call onDeath method
         }
     }
 
@@ -79,7 +82,7 @@ public class PlayerBehaviour : MonoBehaviour
      * It creates a dead body where the player died and respawns the player if they have sufficient lives.
      * But if the player does not have enough lives the player is taken back to the main menu
      */
-    public void onDeath()
+    public void OnDeath()
     {
         if (lives > 0)//checks lives are greater than 0
         {
@@ -89,7 +92,7 @@ public class PlayerBehaviour : MonoBehaviour
             respawnPlayer();
             //calls the LoseLife() method
             lives--;
-            Debug.Log(lives);
+            livesManager.GetComponent<LivesSystem>().LoseLife();
         }
         else
         {

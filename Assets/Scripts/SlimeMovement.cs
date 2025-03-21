@@ -24,6 +24,11 @@ public class SlimeMovement : MonoBehaviour
     void Update()
     {
         Patrol();
+
+        if(health <= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     void Patrol()
@@ -61,9 +66,9 @@ public class SlimeMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && collision.gameObject.GetComponent<PlayerControls>().IsDodging() == false)
         {
-            collision.gameObject.GetComponent<PlayerBehaviour>().onDeath();
+            collision.gameObject.GetComponent<PlayerBehaviour>().OnDeath();
         }
 
         else if(collision.CompareTag("Attack"))

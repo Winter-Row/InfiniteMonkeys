@@ -20,7 +20,7 @@ public class DeathArea : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerBehaviour>().onDeath();
+            collision.gameObject.GetComponent<PlayerBehaviour>().OnDeath();
         }
     }
 }

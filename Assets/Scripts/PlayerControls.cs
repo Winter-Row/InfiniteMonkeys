@@ -8,10 +8,11 @@ public class PlayerControls : MonoBehaviour
     private float moveHorizontal;
     private float jumpPow = 15.0f;
 
-	private float dodgeSpeed = 30.0f;
+	private float dodgeSpeed = 5.0f;
 	private float dodgeDuration = 0.2f;
 	private float dodgeCooldown = 1.0f;
 	private float dodgeTimer;
+	private bool isDodging = false;
 
 	private float attackSpeed = 1.0f;
 	private float attackDuration = 0.1f;
@@ -47,6 +48,8 @@ public class PlayerControls : MonoBehaviour
 	private Collider2D currentPlatform;
 	public LayerMask passThroughMask;
 
+	private float playerDirection;
+
     // Start is called before the first frame update
     void Start()
 	{
@@ -65,13 +68,16 @@ public class PlayerControls : MonoBehaviour
 		canClimb = false;
 
 		climbing = false;
-		rigidBody.gravityScale = 2;
+		rigidBody.gravityScale = 5;
+
+		playerDirection = 1.0f;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
 		IsClimbing();
+		
 
 		if(canClimb && Input.GetKeyDown(KeyCode.UpArrow))
 		{
@@ -92,7 +98,17 @@ public class PlayerControls : MonoBehaviour
 		{
 			rigidBody.gravityScale = 5f;
 		}
-	}
+
+		if(GetComponent<SpriteRenderer>().flipX == true)
+		{
+			playerDirection = -1.0f;
+		}
+
+		else if(GetComponent<SpriteRenderer>().flipX == false)
+		{
+			playerDirection = 1.0f;
+		}
+    }
 
 	private void IsClimbing()
 	{
@@ -203,12 +219,17 @@ public class PlayerControls : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Space) && onGround && !Input.GetKey(KeyCode.DownArrow))
 		{
-			rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPow);
-		}
+            animator.SetBool("isJumping", true);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPow);
+            
+            //Debug.Log(animator.GetBool("isJumping"));
+        }
 		else if (Input.GetKeyDown(KeyCode.Space) && !onGround && hasDoubleJump)
 		{
 			rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPow);
 			hasDoubleJump = false;
+			animator.SetBool("isJumping", false);
+			animator.SetBool("isDoubleJumping", true);
 		}
 	}
 
@@ -218,22 +239,29 @@ public class PlayerControls : MonoBehaviour
 		runSpeed = 0f;
 		dodgeTimer = Time.time + dodgeCooldown;
 
-		float moveInput = Input.GetAxisRaw("Horizontal");
-		Vector2 dodgeDirection = GetDirection(moveInput);
-
-		// Move the player instantly
-		transform.position += (Vector3)(dodgeDirection * 5);
+		// Determine dodge direction based on playerDirection
+		Vector2 dodgeDirection = new Vector2(playerDirection, 0).normalized;
+		Vector2 startPosition = rigidBody.position;
+		Vector2 targetPosition = startPosition + dodgeDirection * dodgeSpeed;
 
 		// Temporarily disable gravity
 		rigidBody.gravityScale = 0;
 
-		yield return new WaitForSeconds(dodgeDuration);
+		float elapsedTime = 0f;
+		while (elapsedTime < dodgeDuration)
+		{
+			elapsedTime += Time.deltaTime;
+			rigidBody.MovePosition(Vector2.Lerp(startPosition, targetPosition, elapsedTime / dodgeDuration));
+			yield return null;
+		}
 
 		// Restore gravity and normal movement
 		rigidBody.gravityScale = 5;
 		dodging = false;
 		runSpeed = 8.0f;
 	}
+
+
 
 	private IEnumerator Attack()
 	{
@@ -248,11 +276,11 @@ public class PlayerControls : MonoBehaviour
 			attackSpeed = 2.0f;
 		}
 
-		if (GetComponent<SpriteRenderer>().flipX == false)
+		if (playerDirection == 1)
 		{
 			rightSlash.SetActive(true);
 		}
-		else
+		else if(playerDirection == -1)
 		{
 			leftSlash.SetActive(true);
 		}
@@ -261,7 +289,7 @@ public class PlayerControls : MonoBehaviour
 		attackTimer = Time.time + attackCooldown;
 
 		float moveInput = Input.GetAxisRaw("Horizontal");
-		Vector2 attackDirection = GetDirection(moveInput);
+		Vector2 attackDirection = GetDirection(playerDirection);
 		Vector2 startPosition = rigidBody.position;
 		Vector2 targetPosition = startPosition + attackDirection * attackSpeed;
 
@@ -271,7 +299,7 @@ public class PlayerControls : MonoBehaviour
 		while (elapsedTime < attackDuration)
 		{
 			elapsedTime += Time.deltaTime;
-			/*rigidBody.MovePosition(Vector2.Lerp(startPosition, targetPosition, elapsedTime / attackDuration));*/
+			rigidBody.MovePosition(Vector2.Lerp(startPosition, targetPosition, elapsedTime / attackDuration));
 			yield return null;
 		}
 
@@ -372,12 +400,18 @@ public class PlayerControls : MonoBehaviour
 		animator.SetFloat("xVelocity", volocity);
     }
     
+	public bool IsDodging()
+	{
+		return isDodging;
+	}
 
     void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.contacts[0].normal.y > 0.5f)
 		{
 			onGround = true;
+            animator.SetBool("isDoubleJumping", false);
+            animator.SetBool("isJumping", false);
 			hasDoubleJump = true;
 		}
 
