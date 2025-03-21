@@ -143,13 +143,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e0dbfded29b2944b02ec1ce347afb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolSpeed: 1
+  patrolSpeed: 5
   groundCheck: {fileID: 0}
   wallCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
-  health: 20
+  health: 2
 --- !u!61 &-5157386177568197112
 BoxCollider2D:
   m_ObjectHideFlags: 0
