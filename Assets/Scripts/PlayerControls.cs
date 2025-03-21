@@ -77,6 +77,7 @@ public class PlayerControls : MonoBehaviour
 	void Update()
 	{
 		IsClimbing();
+		
 
 		if(canClimb && Input.GetKeyDown(KeyCode.UpArrow))
 		{
@@ -107,7 +108,7 @@ public class PlayerControls : MonoBehaviour
 		{
 			playerDirection = 1.0f;
 		}
-	}
+    }
 
 	private void IsClimbing()
 	{
@@ -218,12 +219,17 @@ public class PlayerControls : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Space) && onGround && !Input.GetKey(KeyCode.DownArrow))
 		{
-			rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPow);
-		}
+            animator.SetBool("isJumping", true);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPow);
+            
+            //Debug.Log(animator.GetBool("isJumping"));
+        }
 		else if (Input.GetKeyDown(KeyCode.Space) && !onGround && hasDoubleJump)
 		{
 			rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPow);
 			hasDoubleJump = false;
+			animator.SetBool("isJumping", false);
+			animator.SetBool("isDoubleJumping", true);
 		}
 	}
 
@@ -404,6 +410,8 @@ public class PlayerControls : MonoBehaviour
 		if (collision.contacts[0].normal.y > 0.5f)
 		{
 			onGround = true;
+            animator.SetBool("isDoubleJumping", false);
+            animator.SetBool("isJumping", false);
 			hasDoubleJump = true;
 		}
 
