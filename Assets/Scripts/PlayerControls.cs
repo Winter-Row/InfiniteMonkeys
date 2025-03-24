@@ -71,7 +71,7 @@ public class PlayerControls : MonoBehaviour
 		rigidBody.gravityScale = 5;
 
 		playerDirection = 1.0f;
-	}
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -279,11 +279,13 @@ public class PlayerControls : MonoBehaviour
 		if (playerDirection == 1)
 		{
 			rightSlash.SetActive(true);
-		}
+            animator.SetBool("isAttacking", true);
+        }
 		else if(playerDirection == -1)
 		{
 			leftSlash.SetActive(true);
-		}
+            animator.SetBool("isAttacking", true);
+        }
 
 		attacking = true;
 		attackTimer = Time.time + attackCooldown;
@@ -305,6 +307,7 @@ public class PlayerControls : MonoBehaviour
 
 		rigidBody.gravityScale = 2;
 		attacking = false;
+		animator.SetBool("isAttacking", false);
 		rightSlash.SetActive(false);
 		leftSlash.SetActive(false);
 
