@@ -68,7 +68,7 @@ public class SlimeMovement : MonoBehaviour
     {
         if (collision.CompareTag("Player") && collision.gameObject.GetComponent<PlayerControls>().IsDodging() == false)
         {
-            collision.gameObject.GetComponent<PlayerBehaviour>().OnDeath();
+            collision.gameObject.GetComponent<PlayerBehaviour>().PlayerHit();
         }
 
         else if(collision.CompareTag("Attack"))

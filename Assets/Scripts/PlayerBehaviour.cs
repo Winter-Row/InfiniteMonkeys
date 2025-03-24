@@ -4,6 +4,7 @@ using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -17,12 +18,20 @@ public class PlayerBehaviour : MonoBehaviour
 
     public GameObject livesManager;
 
-    // Start is called before the first frame update
-    void Start()
+	[Header("Health System")]
+	public GameObject[] hitPoints; // UI GameObjects representing health
+	private int currentHits = 0; // Tracks damage taken
+	private bool canTakeDamage = true; // Controls damage delay
+	public float hitDelay = 1.0f; // Delay time after each hit
+
+	// Start is called before the first frame update
+	void Start()
     {
         lives = 15;
         checkPoint = false;
         spawn = GameObject.FindGameObjectWithTag("Spawn").GetComponent<Spawn>();
+
+        ResetHitPoints();
     }
 
     // Update is called once per frame
@@ -34,25 +43,67 @@ public class PlayerBehaviour : MonoBehaviour
 		}
 	}
 
-    /*
+	/*
      * Decrements the lives veriable by 1
      * Checks if the lives varaible is less than 0
      * Calls the onDeath() method if the lives variable is less than 0
      */
-    public void LoseLife()
+	/*public void LoseLife()
     {
         lives--;//decrement lives variable
         if(lives < 0)//check lives variable against 0
         {
             OnDeath();//call onDeath method
         }
-    }
+    }*/
 
-    /*
+	private void ChangeColor(GameObject obj, Color color)
+	{
+		Renderer renderer = obj.GetComponent<Renderer>();
+		if (renderer != null)
+		{
+			renderer.material.color = color;
+		}
+	}
+
+	public void PlayerHit()
+	{
+		if (canTakeDamage && currentHits < hitPoints.Length)
+		{
+			StartCoroutine(TakeDamageWithDelay());
+		}
+	}
+
+	private IEnumerator TakeDamageWithDelay()
+	{
+		canTakeDamage = false; // Prevents taking damage multiple times in quick succession
+
+		ChangeColor(hitPoints[currentHits], Color.red); // Change left-most hit point to red
+		currentHits++;
+
+		if (currentHits >= hitPoints.Length) // If all are red, lose a life
+		{
+			OnDeath();
+		}
+
+		yield return new WaitForSeconds(hitDelay); // Wait before allowing damage again
+		canTakeDamage = true;
+	}
+
+	public void ResetHitPoints()
+	{
+		foreach (GameObject hitPoint in hitPoints)
+		{
+			ChangeColor(hitPoint, Color.green); // Reset all to green
+		}
+		currentHits = 0;
+	}
+
+	/*
      * Sets the values used for checking if the player has passed a checkpoint
      * and what the last passed checkpoint position is.
     */
-    public void SetCheckpoint(Vector2 pos)
+	public void SetCheckpoint(Vector2 pos)
     {
         checkPoint = true;
         checkPointPos = pos;
@@ -64,7 +115,7 @@ public class PlayerBehaviour : MonoBehaviour
      * if the player is checkpointed spawn the character at the postion of the checkpoint
      * if the player has not passed a checkpout spawn the character at the spawn point
      */
-    public void respawnPlayer()
+    public void RespawnPlayer()
     {
         if (checkPoint)
         {
@@ -77,38 +128,40 @@ public class PlayerBehaviour : MonoBehaviour
             gameObject.transform.position = new Vector2(spawn.transform.position.x, spawn.transform.position.y);
         }
     }
-    /*
+	/*
      * Method is used for when the player character dies in the game.
      * It creates a dead body where the player died and respawns the player if they have sufficient lives.
      * But if the player does not have enough lives the player is taken back to the main menu
      */
-    public void OnDeath()
-    {
-        if (lives > 0)//checks lives are greater than 0
-        {
-            //creates a deadCharacter prefab at the position of the current game object which is the player
-            Instantiate(deadCharacter, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
-            //calls the respawnPlayer() method
-            respawnPlayer();
-            //calls the LoseLife() method
-            lives--;
-            livesManager.GetComponent<LivesSystem>().LoseLife();
-        }
-        else
-        {
-            //loads the main menu sence which is set as sence 0 in the build settings
-            SceneManager.LoadScene(0);
-        }
+	public void OnDeath()
+	{
+		if (lives > 0)
+		{
+			Instantiate(deadCharacter, transform.position, Quaternion.identity);
+			RespawnPlayer();
+			lives--;
 
+			Debug.Log("Player died, lives left: " + lives);
+
+			LivesSystem livesSystem = livesManager.GetComponent<LivesSystem>();
+			livesSystem.LoseLife();
+
+			ResetHitPoints();
+		}
+		else
+		{
+			SceneManager.LoadScene(0);
+		}
 	}
-    /*
+
+	/*
      * this method is used to pause the player from performing any actions or moving
      * by using methods from the player control script and disabling the script in general
      * also displays a victory banner
      */
-    public void PausePlayer()
+	public void PausePlayer()
     {
-        gameObject.GetComponent<PlayerBehaviour>().displayBanner();//maybe should be moved to make pause more general
+        gameObject.GetComponent<PlayerBehaviour>().DisplayBanner();//maybe should be moved to make pause more general
         //calls the SetVelocity() method from player controls and passes the method 0,0 to stop the player from moving
         gameObject.GetComponent<PlayerControls>().SetVelocity(0, 0);
         //calls the SetSpriteVolocity() method to change the sprite from running to idle animation
@@ -120,7 +173,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         gameObject.GetComponent<PlayerControls>().enabled = true; 
     }
-    public void displayBanner()
+    public void DisplayBanner()
     {
         Instantiate(Banner, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
     }
