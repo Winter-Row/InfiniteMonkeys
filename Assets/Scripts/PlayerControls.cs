@@ -19,9 +19,9 @@ public class PlayerControls : MonoBehaviour
 	private float attackCooldown = 0.5f;
 	private float attackTimer;
 
-	[SerializeField] private bool onGround;
+	private bool onGround;
 
-	[SerializeField] private bool hasDoubleJump;
+	private bool hasDoubleJump;
 
 	private bool stomping;
 
@@ -49,9 +49,6 @@ public class PlayerControls : MonoBehaviour
 	public LayerMask passThroughMask;
 
 	private float playerDirection;
-
-	[SerializeField] private AudioClip jumpSound;
-	[SerializeField] private AudioClip doubleJumpSound;
 
     // Start is called before the first frame update
     void Start()
@@ -224,7 +221,6 @@ public class PlayerControls : MonoBehaviour
 		{
             animator.SetBool("isJumping", true);
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPow);
-			SFXController.instance.PlaySoundFXClip(jumpSound, transform, 1.0f);
             
             //Debug.Log(animator.GetBool("isJumping"));
         }
@@ -232,7 +228,6 @@ public class PlayerControls : MonoBehaviour
 		{
 			rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPow);
 			hasDoubleJump = false;
-			SFXController.instance.PlaySoundFXClip(doubleJumpSound, transform, 1.0f);
 			animator.SetBool("isJumping", false);
 			animator.SetBool("isDoubleJumping", true);
 		}
