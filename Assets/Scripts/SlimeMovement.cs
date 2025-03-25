@@ -14,6 +14,9 @@ public class SlimeMovement : MonoBehaviour
 
     public int health = 20;
 
+    [SerializeField] private AudioClip hitSound1;
+    [SerializeField] private AudioClip hitSound2;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -73,6 +76,16 @@ public class SlimeMovement : MonoBehaviour
 
         else if(collision.CompareTag("Attack"))
         {
+            //play hit SFX with a 50/50 chance of playing either sound
+            if(Random.Range(0, 2) == 0)
+            {
+                SFXController.instance.PlaySoundFXClip(hitSound1, transform, 1f);
+            }
+            else
+            {
+                SFXController.instance.PlaySoundFXClip(hitSound2, transform, 1f);
+            }
+
             health -= collision.gameObject.GetComponent<Attack>().getDamage();
         }
     }

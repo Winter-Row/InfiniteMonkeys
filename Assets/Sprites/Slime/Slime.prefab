@@ -150,6 +150,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   health: 1
+  hitSound1: {fileID: 8300000, guid: c8fccc7512d00a847a35c5d210c7a33f, type: 3}
+  hitSound2: {fileID: 8300000, guid: 0a4b66e337e789e4fb8b74e90a6c01af, type: 3}
 --- !u!61 &-5157386177568197112
 BoxCollider2D:
   m_ObjectHideFlags: 0
