@@ -17,6 +17,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     public GameObject livesManager;
 
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip deathSound2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +89,16 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (lives > 0)//checks lives are greater than 0
         {
+            //play death sound with a 50/50 chance of playing either sound
+            if (Random.Range(0, 2) == 0)
+            {
+			    SFXController.instance.PlaySoundFXClip(deathSound, transform, 1.0f);
+            }
+            else
+            {
+			    SFXController.instance.PlaySoundFXClip(deathSound2, transform, 1.0f);
+            }
+
             //creates a deadCharacter prefab at the position of the current game object which is the player
             Instantiate(deadCharacter, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
             //calls the respawnPlayer() method
