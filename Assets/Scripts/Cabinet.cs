@@ -6,6 +6,7 @@ public class Cabinet : MonoBehaviour
 {
     private GameObject prompt;
     private Animator animator;
+    private List<GameObject> itemList;
     private bool opened;
     // Start is called before the first frame update
     void Start()
