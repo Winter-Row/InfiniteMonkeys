@@ -19,8 +19,10 @@ public class PlayerControls : MonoBehaviour
 	private float attackCooldown = 0.5f;
 	private float attackTimer;
 
+	[SerializeField]
 	private bool onGround;
 
+	[SerializeField]
 	private bool hasDoubleJump;
 
 	private bool stomping;
@@ -76,6 +78,13 @@ public class PlayerControls : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		float maxFallSpeed = -30f;
+
+		if (rigidBody.velocity.y < maxFallSpeed)
+		{
+			rigidBody.velocity = new Vector2(rigidBody.velocity.x, maxFallSpeed);
+		}
+
 		IsClimbing();
 		
 
@@ -261,11 +270,9 @@ public class PlayerControls : MonoBehaviour
 		runSpeed = 8.0f;
 	}
 
-
-
 	private IEnumerator Attack()
 	{
-		if (attackCount < 3)
+		/*if (attackCount < 3)
 		{
 			spriteRenderer.color = Color.red;
 			attackSpeed = 1.0f;
@@ -274,7 +281,7 @@ public class PlayerControls : MonoBehaviour
 		{
 			spriteRenderer.color = Color.cyan;
 			attackSpeed = 2.0f;
-		}
+		}*/
 
 		if (playerDirection == 1)
 		{
@@ -311,7 +318,7 @@ public class PlayerControls : MonoBehaviour
 		rightSlash.SetActive(false);
 		leftSlash.SetActive(false);
 
-		if (attackCount == 3)
+		/*if (attackCount == 3)
 		{
 			attackCount = 1;
 		}
@@ -320,7 +327,7 @@ public class PlayerControls : MonoBehaviour
 			attackCount++;
 		}
 
-		spriteRenderer.color = Color.white;
+		spriteRenderer.color = Color.white;*/
 	}
 
 
@@ -410,14 +417,6 @@ public class PlayerControls : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.contacts[0].normal.y > 0.5f)
-		{
-			onGround = true;
-            animator.SetBool("isDoubleJumping", false);
-            animator.SetBool("isJumping", false);
-			hasDoubleJump = true;
-		}
-
 		if (((1 << collision.gameObject.layer) & passThroughMask) != 0)
 		{
 			currentPlatform = collision.collider;
@@ -430,9 +429,29 @@ public class PlayerControls : MonoBehaviour
 		}
 	}
 
+	void OnCollisionStay2D(Collision2D collision)
+	{
+		foreach (ContactPoint2D contact in collision.contacts)
+		{
+			if (contact.normal.y > 0.5f)
+			{
+				onGround = true;
+				animator.SetBool("isDoubleJumping", false);
+				animator.SetBool("isJumping", false);
+				hasDoubleJump = true;
+				return;
+			}
+		}
+	}
+
 	void OnCollisionExit2D(Collision2D collision)
 	{
-		onGround = false;
+		onGround = false; // Player left the ground
+	}
+
+	/*void OnCollisionExit2D(Collision2D collision)
+	{
+		*//*onGround = false;*//*
 
 		if (collision.collider == currentPlatform)
 		{
@@ -465,5 +484,5 @@ public class PlayerControls : MonoBehaviour
 			climbing = false;
 			rigidBody.gravityScale = 2;
 		}
-	}
+	}*/
 }
