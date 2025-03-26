@@ -13,8 +13,10 @@ public class SlimeMovement : MonoBehaviour
     private float patrolTime = 0f;
 
     public int health = 20;
+	public float hitCooldown = 0.5f;
+	private float lastHitTime = 0f;
 
-    void Start()
+	void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -64,16 +66,19 @@ public class SlimeMovement : MonoBehaviour
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && collision.gameObject.GetComponent<PlayerControls>().IsDodging() == false)
-        {
-            collision.gameObject.GetComponent<PlayerBehaviour>().PlayerHit();
-        }
-
-        else if(collision.CompareTag("Attack"))
-        {
-            health -= collision.gameObject.GetComponent<Attack>().getDamage();
-        }
-    }
+	void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.CompareTag("Player") && !collision.gameObject.GetComponent<PlayerControls>().IsDodging())
+		{
+			collision.gameObject.GetComponent<PlayerBehaviour>().PlayerHit();
+		}
+		else if (collision.CompareTag("Attack"))
+		{
+			if (Time.time - lastHitTime > hitCooldown)
+			{
+				health -= collision.gameObject.GetComponent<Attack>().getDamage();
+				lastHitTime = Time.time;
+			}
+		}
+	}
 }
