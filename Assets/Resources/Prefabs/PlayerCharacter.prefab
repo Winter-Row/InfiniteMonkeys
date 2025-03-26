@@ -114,9 +114,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4459197746832080693}
   - component: {fileID: 4100158562152977221}
+  - component: {fileID: 4650056388295437620}
   m_Layer: 0
-  m_Name: Triangle (2)
-  m_TagString: Untagged
+  m_Name: RightStomp
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,6 +189,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4650056388295437620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577724748756616882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a79938ca9d8e0b40855b384b997714b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 3
 --- !u!1 &1094439617567545321
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2926946933713723387
 RectTransform:
   m_ObjectHideFlags: 0
@@ -299,8 +313,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 568, y: -154}
-  m_SizeDelta: {x: 615, y: 50}
+  m_AnchoredPosition: {x: 1029, y: -154}
+  m_SizeDelta: {x: 1218.7952, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8533986780333115563
 CanvasRenderer:
@@ -330,7 +344,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: '|||||||||'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -651,9 +665,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9105660424909910737}
   - component: {fileID: 2675259604239571425}
+  - component: {fileID: 6336916959348369334}
   m_Layer: 0
-  m_Name: Triangle
-  m_TagString: Untagged
+  m_Name: LeftStomp
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -725,6 +740,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6336916959348369334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461402157722540194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a79938ca9d8e0b40855b384b997714b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 3
 --- !u!1 &6574142071887890248
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,8 +864,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6669755902493208331}
   m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: 0.7, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0.739, y: -0.089, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8707085921094636255}
@@ -959,7 +987,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8315058660400131413}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.38400006, y: -0.041000366, z: 0}
+  m_LocalPosition: {x: -0.399, y: -0.041000366, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1008,8 +1036,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8485307204276169547}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.7, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalPosition: {x: -0.621, y: -0.08899976, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8707085921094636255}
@@ -1500,6 +1528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30b64e86f2a4b4458871f7381659639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onGround: 0
+  hasDoubleJump: 0
   stompBlast: {fileID: 8315058660400131413}
   passThroughMask:
     serializedVersion: 2
