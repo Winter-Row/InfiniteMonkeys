@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5b2baf17859bfe348b30bd999ffccdf3
+guid: 6defd744865051741a6b14a45b09fe88
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: idle_0
+      name: Player_Attack_Red_Sword_0
       rect:
         serializedVersion: 2
         x: 0
@@ -155,14 +155,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0a55a875f5e6a147b8019e7d6f7844e
-      internalID: 1880501655
+      spriteID: 216d6b4a91eb0c04883fd1ae0dddf0ff
+      internalID: 980790915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_1
+      name: Player_Attack_Red_Sword_1
       rect:
         serializedVersion: 2
         x: 128
@@ -176,14 +176,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3bc689864a59c741b47a748b387772f
-      internalID: -286154815
+      spriteID: 591d94848dbb25346a87ed8479e76e2f
+      internalID: -61244960
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_2
+      name: Player_Attack_Red_Sword_2
       rect:
         serializedVersion: 2
         x: 256
@@ -197,14 +197,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f6fe65d8c4014a448896d2321392645
-      internalID: -1843351402
+      spriteID: dbee3e8a647972a45911d191fff2f227
+      internalID: 247584497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_3
+      name: Player_Attack_Red_Sword_3
       rect:
         serializedVersion: 2
         x: 384
@@ -218,14 +218,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1ba02db5285ff64ea782227f36b1dd0
-      internalID: -1641334176
+      spriteID: f683bb14b0e3afd46b37436696576a03
+      internalID: -1622017841
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_4
+      name: Player_Attack_Red_Sword_4
       rect:
         serializedVersion: 2
         x: 512
@@ -239,8 +239,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62cd323ca8e393d4aa90204d7a3ff246
-      internalID: -866219263
+      spriteID: 1613945c483586e4a9a4438de3c88f67
+      internalID: 457589821
       vertices: []
       indices: 
       edges: []
@@ -256,11 +256,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      idle_0: 1880501655
-      idle_1: -286154815
-      idle_2: -1843351402
-      idle_3: -1641334176
-      idle_4: -866219263
+      Player_Attack_Red_Sword_0: 980790915
+      Player_Attack_Red_Sword_1: -61244960
+      Player_Attack_Red_Sword_2: 247584497
+      Player_Attack_Red_Sword_3: -1622017841
+      Player_Attack_Red_Sword_4: 457589821
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
