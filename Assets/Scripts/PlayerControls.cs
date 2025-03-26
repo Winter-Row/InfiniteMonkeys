@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,17 +7,18 @@ public class PlayerControls : MonoBehaviour
 {
 	private float runSpeed = 8.0f;
     private float moveHorizontal;
-    private float jumpPow = 15.0f;
+    private readonly float jumpPow = 15.0f;
+	private readonly float maxFallSpeed = -30.0f;
 
-	private float dodgeSpeed = 5.0f;
-	private float dodgeDuration = 0.2f;
-	private float dodgeCooldown = 1.0f;
+	private readonly float dodgeSpeed = 5.0f;
+	private readonly float dodgeDuration = 0.2f;
+	private readonly float dodgeCooldown = 1.0f;
 	private float dodgeTimer;
 	private bool isDodging = false;
 
-	private float attackSpeed = 1.0f;
-	private float attackDuration = 0.1f;
-	private float attackCooldown = 0.5f;
+	private readonly float attackSpeed = 1.0f;
+	private readonly float attackDuration = 0.1f;
+	private readonly float attackCooldown = 1.0f;
 	private float attackTimer;
 
 	[SerializeField]
@@ -27,14 +29,8 @@ public class PlayerControls : MonoBehaviour
 
 	private bool stomping;
 
-	private bool canClimb;
-
 	private bool dodging;
 	private bool attacking;
-
-	private bool climbing;
-
-	private int attackCount = 1;
 
 	private Rigidbody2D rigidBody;
 
@@ -67,9 +63,6 @@ public class PlayerControls : MonoBehaviour
         attacking = false;
         dodging = false;
 		stomping = false;
-		canClimb = false;
-
-		climbing = false;
 		rigidBody.gravityScale = 5;
 
 		playerDirection = 1.0f;
@@ -78,27 +71,25 @@ public class PlayerControls : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		float maxFallSpeed = -30f;
+		SpeedControl();
 
+		PlayerInputs();
+
+		GravityControl();
+
+		ChangeDirection();
+    }
+
+	void SpeedControl()
+	{
 		if (rigidBody.velocity.y < maxFallSpeed)
 		{
 			rigidBody.velocity = new Vector2(rigidBody.velocity.x, maxFallSpeed);
 		}
+	}
 
-		IsClimbing();
-		
-
-		if(canClimb && Input.GetKeyDown(KeyCode.UpArrow))
-		{
-			climbing = true;
-			Climb();
-		}
-
-		if(climbing && Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-		{
-			climbing = false;
-		}
-
+	void GravityControl()
+	{
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			rigidBody.gravityScale = 1f;
@@ -107,107 +98,62 @@ public class PlayerControls : MonoBehaviour
 		{
 			rigidBody.gravityScale = 5f;
 		}
+	}
 
-		if(GetComponent<SpriteRenderer>().flipX == true)
+	void ChangeDirection()
+	{
+		if (GetComponent<SpriteRenderer>().flipX == true)
 		{
 			playerDirection = -1.0f;
 		}
 
-		else if(GetComponent<SpriteRenderer>().flipX == false)
+		else if (GetComponent<SpriteRenderer>().flipX == false)
 		{
 			playerDirection = 1.0f;
 		}
-    }
-
-	private void IsClimbing()
-	{
-        if (!climbing)
-        {
-			moveHorizontal = Input.GetAxis("Horizontal");
-			// Flip character sprite based on movement direction
-			if (moveHorizontal > 0) // Moving right
-			{
-				GetComponent<SpriteRenderer>().flipX = false;
-			}
-			else if (moveHorizontal < 0) // Moving left
-			{
-				GetComponent<SpriteRenderer>().flipX = true;
-			}
-
-			if (!dodging)
-			{
-				PlayerMove();
-				Jump();
-			}
-
-			if (Input.GetKeyDown(KeyCode.B) && Time.time >= dodgeTimer)
-			{
-				StartCoroutine(Dodge());
-			}
-
-			if (Input.GetKeyDown(KeyCode.Q) && Time.time >= attackTimer)
-			{
-				StartCoroutine(Attack());
-			}
-
-			if (Input.GetKeyDown(KeyCode.DownArrow) && !Input.GetKeyDown(KeyCode.Space))
-			{
-				Stomp();
-			}
-
-			if (Input.GetKey(KeyCode.DownArrow) && onGround && Input.GetKeyDown(KeyCode.Space))
-			{
-				DropDown();
-			}
-
-			if (onGround && stomping)
-			{
-				StartCoroutine(StompBlast());
-			}
-
-			animator.SetFloat("xVelocity", Mathf.Abs(moveHorizontal));
-			rigidBody.velocity = new Vector2(moveHorizontal * runSpeed, rigidBody.velocity.y);
-		}
-    }
-
-	private void NumberCheck()
-	{
-		if (attackCount == 3)
-		{
-			attackSpeed = 20.0f;
-		}
-		else if (attackCount != 3)
-		{
-			attackSpeed = 10.0f;
-		}
 	}
 
-	private void ColourCheck()
+	void PlayerInputs()
 	{
-		if (dodging)
+		moveHorizontal = Input.GetAxis("Horizontal");
+		// Flip character sprite based on movement direction
+		if (moveHorizontal > 0) // Moving right
 		{
-			spriteRenderer.color = Color.blue;
+			GetComponent<SpriteRenderer>().flipX = false;
+		}
+		else if (moveHorizontal < 0) // Moving left
+		{
+			GetComponent<SpriteRenderer>().flipX = true;
 		}
 
-		else if (!dodging)
+		if (!dodging)
 		{
-			spriteRenderer.color = Color.white;
+			PlayerMove();
+			Jump();
 		}
 
-		if (attacking)
+		if (Input.GetKeyDown(KeyCode.B) && Time.time >= dodgeTimer)
 		{
-			spriteRenderer.color = Color.red;
+			StartCoroutine(Dodge());
 		}
 
-		else if (attacking && attackCount == 3)
+		if (Input.GetKeyDown(KeyCode.Q) && Time.time >= attackTimer)
 		{
-			spriteRenderer.color = Color.cyan;
+			StartCoroutine(Attack());
 		}
 
-		else if (!attacking)
+		if (Input.GetKeyDown(KeyCode.DownArrow) && !Input.GetKeyDown(KeyCode.Space))
 		{
-			spriteRenderer.color = Color.white;
+			Stomp();
 		}
+
+		if (onGround && stomping)
+		{
+			StartCoroutine(StompBlast());
+		}
+
+		animator.SetFloat("xVelocity", Mathf.Abs(moveHorizontal));
+		rigidBody.velocity = new Vector2(moveHorizontal * runSpeed, rigidBody.velocity.y);
 	}
 
 	private void PlayerMove()
@@ -272,17 +218,6 @@ public class PlayerControls : MonoBehaviour
 
 	private IEnumerator Attack()
 	{
-		/*if (attackCount < 3)
-		{
-			spriteRenderer.color = Color.red;
-			attackSpeed = 1.0f;
-		}
-		else if (attackCount == 3)
-		{
-			spriteRenderer.color = Color.cyan;
-			attackSpeed = 2.0f;
-		}*/
-
 		if (playerDirection == 1)
 		{
 			rightSlash.SetActive(true);
@@ -317,17 +252,6 @@ public class PlayerControls : MonoBehaviour
 		animator.SetBool("isAttacking", false);
 		rightSlash.SetActive(false);
 		leftSlash.SetActive(false);
-
-		/*if (attackCount == 3)
-		{
-			attackCount = 1;
-		}
-		else
-		{
-			attackCount++;
-		}
-
-		spriteRenderer.color = Color.white;*/
 	}
 
 
@@ -356,49 +280,6 @@ public class PlayerControls : MonoBehaviour
 		stomping = false;
 	}
 
-	private void DropDown()
-	{
-		if (currentPlatform != null)
-		{
-			StartCoroutine(PassThrough());
-		}
-		Debug.Log("Pass through");
-	}
-
-	IEnumerator PassThrough()
-	{
-		if (currentPlatform != null)
-		{
-			Collider2D platformCollider = currentPlatform;
-			platformCollider.enabled = false;
-			yield return new WaitForSeconds(0.5f);
-			platformCollider.enabled = true;
-		}
-	}
-
-	private void Climb()
-	{
-		rigidBody.velocity = Vector2.zero;
-		rigidBody.gravityScale = 0;
-		rigidBody.constraints = RigidbodyConstraints2D.FreezePositionX;
-		rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-		if(Input.GetKey(KeyCode.UpArrow))
-		{
-			rigidBody.velocity = new Vector2(rigidBody.velocity.x, 2.0f);
-		}
-
-		else if (Input.GetKey(KeyCode.DownArrow))
-		{
-			rigidBody.velocity = new Vector2(rigidBody.velocity.x, -2.0f);
-		}
-
-		else if (!Input.GetKey(KeyCode.DownArrow) || !Input.GetKey(KeyCode.UpArrow))
-		{
-			rigidBody.velocity = Vector2.zero;
-		}
-	}
-
 	//public method to set the run speed with a provided value speed
 	public void SetVelocity(float speedx, float speedy)
 	{
@@ -417,16 +298,7 @@ public class PlayerControls : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (((1 << collision.gameObject.layer) & passThroughMask) != 0)
-		{
-			currentPlatform = collision.collider;
-		}
-
-		if (collision.gameObject.layer == LayerMask.NameToLayer("Climbable"))
-		{
-			Debug.Log("Can climb");
-			canClimb = true;
-		}
+		
 	}
 
 	void OnCollisionStay2D(Collision2D collision)
@@ -446,43 +318,6 @@ public class PlayerControls : MonoBehaviour
 
 	void OnCollisionExit2D(Collision2D collision)
 	{
-		onGround = false; // Player left the ground
+		onGround = false;
 	}
-
-	/*void OnCollisionExit2D(Collision2D collision)
-	{
-		*//*onGround = false;*//*
-
-		if (collision.collider == currentPlatform)
-		{
-			currentPlatform = null;
-		}
-
-		if (collision.gameObject.layer == LayerMask.NameToLayer("Climbable"))
-		{
-			Debug.Log("Can't climb");
-			canClimb = false;
-			rigidBody.gravityScale = 2;
-		}
-	}
-
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.gameObject.layer == LayerMask.NameToLayer("Climbable"))
-		{
-			Debug.Log("Can climb");
-			canClimb = true;
-		}
-	}
-
-    private void OnTriggerExit2D(Collider2D collision)
-	{
-		if (collision.gameObject.layer == LayerMask.NameToLayer("Climbable"))
-		{
-			Debug.Log("Can't climb");
-			canClimb = false;
-			climbing = false;
-			rigidBody.gravityScale = 2;
-		}
-	}*/
 }
