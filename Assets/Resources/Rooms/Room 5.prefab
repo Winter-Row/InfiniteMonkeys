@@ -2332,10 +2332,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7827163711821289740}
     m_Modifications:
+    - target: {fileID: -5158420866513132165, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
+      propertyPath: health
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3243498238219119421, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
       propertyPath: m_Name
       value: RampageSlime
       objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
+      propertyPath: m_Mass
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 7b5ba42aecac46e4fbfbdc43a0b4116f, type: 2}
     - target: {fileID: 7007323003583101777, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
       propertyPath: m_RootOrder
       value: 5
