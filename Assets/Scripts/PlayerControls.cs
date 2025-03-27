@@ -58,15 +58,19 @@ public class PlayerControls : MonoBehaviour
 		rigidBody = GetComponent<Rigidbody2D>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
         rightSlash = GameObject.Find("Right Slash");
         rightSlashAnimator = rightSlash.GetComponent<Animator>();
-        leftSlash = GameObject.Find("Left Slash");
+		leftSlash = GameObject.Find("Left Slash");
 		leftSlashAnimator = leftSlash.GetComponent<Animator>();
 		stompBlast = GameObject.Find("Stomp");
-        rightSlash.gameObject.SetActive(false);
+
+
+        
+		rightSlash.gameObject.SetActive(false);
         leftSlash.gameObject.SetActive(false);
 		stompBlast.gameObject.SetActive(false);
-        attacking = false;
+		attacking = false;
         dodging = false;
 		stomping = false;
 		rigidBody.gravityScale = 5;
@@ -122,11 +126,13 @@ public class PlayerControls : MonoBehaviour
 	void PlayerInputs()
 	{
 		moveHorizontal = Input.GetAxis("Horizontal");
+
 		// Flip character sprite based on movement direction
 		if (moveHorizontal > 0) // Moving right
 		{
 			GetComponent<SpriteRenderer>().flipX = false;
-		}
+
+        }
 		else if (moveHorizontal < 0) // Moving left
 		{
 			GetComponent<SpriteRenderer>().flipX = true;
@@ -227,7 +233,8 @@ public class PlayerControls : MonoBehaviour
 		if (playerDirection == 1)
 		{
 			rightSlash.SetActive(true);
-			rightSlashAnimator.SetBool("isAttackingRight", true);
+
+            rightSlashAnimator.SetBool("isAttackingRight", true);
             animator.SetBool("isAttacking", true);
         }
 		else if(playerDirection == -1)
