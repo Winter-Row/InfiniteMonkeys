@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,7 +40,10 @@ public class PlayerControls : MonoBehaviour
     Animator animator;
 
     private GameObject rightSlash;
+    private Animator rightSlashAnimator;
+
     private GameObject leftSlash;
+	private Animator leftSlashAnimator;
 
 	public GameObject stompBlast;
 
@@ -55,7 +59,9 @@ public class PlayerControls : MonoBehaviour
 		spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rightSlash = GameObject.Find("Right Slash");
+        rightSlashAnimator = rightSlash.GetComponent<Animator>();
         leftSlash = GameObject.Find("Left Slash");
+		leftSlashAnimator = leftSlash.GetComponent<Animator>();
 		stompBlast = GameObject.Find("Stomp");
         rightSlash.gameObject.SetActive(false);
         leftSlash.gameObject.SetActive(false);
@@ -221,11 +227,13 @@ public class PlayerControls : MonoBehaviour
 		if (playerDirection == 1)
 		{
 			rightSlash.SetActive(true);
+			rightSlashAnimator.SetBool("isAttackingRight", true);
             animator.SetBool("isAttacking", true);
         }
 		else if(playerDirection == -1)
 		{
 			leftSlash.SetActive(true);
+			leftSlashAnimator.SetBool("isAttackingLeft", true);
             animator.SetBool("isAttacking", true);
         }
 
@@ -248,10 +256,23 @@ public class PlayerControls : MonoBehaviour
 		}
 
 		rigidBody.gravityScale = 2;
-		attacking = false;
-		animator.SetBool("isAttacking", false);
-		rightSlash.SetActive(false);
-		leftSlash.SetActive(false);
+
+        attacking = false;
+        animator.SetBool("isAttacking", false);
+
+        // TW - waits to complete swing animation to reset
+		if (rightSlash.activeSelf)
+		{
+            yield return new WaitUntil(() => !rightSlashAnimator.GetCurrentAnimatorStateInfo(0).IsName("BigSlashAnimation"));
+            rightSlashAnimator.SetBool("isAttackingRight", false);
+			rightSlash.SetActive(false);
+		}
+		else if (leftSlash.activeSelf)
+		{
+            yield return new WaitUntil(() => !leftSlashAnimator.GetCurrentAnimatorStateInfo(0).IsName("BigSlashAnimationLeft"));
+            leftSlashAnimator.SetBool("isAttackingLeft", false);
+            leftSlash.SetActive(false);
+        }
 	}
 
 
