@@ -198,7 +198,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Item")
+        if(collision.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.F))
         {
             collision.gameObject.GetComponent<Item>().storeItem(gameObject.GetComponent<PlayerBehaviour>());
         }

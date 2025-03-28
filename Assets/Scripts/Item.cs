@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class Item : MonoBehaviour, IStoreable
@@ -10,7 +11,7 @@ public class Item : MonoBehaviour, IStoreable
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = new Vector2(transform.position.x + 1, transform.position.y);
     }
 
     // Update is called once per frame
@@ -27,5 +28,7 @@ public class Item : MonoBehaviour, IStoreable
         {
             player.doubleDmg();
         }
+        Debug.Log("Picked up");
+        Destroy(gameObject);
     }
 }
