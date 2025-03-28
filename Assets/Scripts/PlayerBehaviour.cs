@@ -178,17 +178,18 @@ public class PlayerBehaviour : MonoBehaviour
         Instantiate(Banner, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
     }
 
-    public void pickUp()
+    public void PickUp()
     {
         
     }
 
-    public void addLife(int life)
+    public void AddLife(int life)
     {
         lives += life;
+        ResetHitPoints();
     }
 
-    public void doubleDmg()
+    public void DoubleDmg()
     {
         Attack attackR = GameObject.Find("Right Slash").GetComponent<Attack>();
         Attack attackL = GameObject.Find("Right Slash").GetComponent<Attack>();

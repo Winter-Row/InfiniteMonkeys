@@ -68,7 +68,7 @@ public class SlimeMovement : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.CompareTag("Player") && !collision.gameObject.GetComponent<PlayerControls>().IsDodging())
+		if (collision.CompareTag("Player") && collision.gameObject.GetComponent<PlayerControls>().IsDodging() == false)
 		{
 			collision.gameObject.GetComponent<PlayerBehaviour>().PlayerHit();
 		}

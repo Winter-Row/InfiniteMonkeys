@@ -23,10 +23,10 @@ public class Item : MonoBehaviour, IStoreable
     {
         if(gameObject.name == "ItemOne")
         {
-            player.addLife(1);
+            player.AddLife(1);
         }else if(gameObject.name == "ItemTwo")
         {
-            player.doubleDmg();
+            player.DoubleDmg();
         }
         Debug.Log("Picked up");
         Destroy(gameObject);

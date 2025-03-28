@@ -1668,9 +1668,8 @@ MonoBehaviour:
   onGround: 0
   hasDoubleJump: 0
   stompBlast: {fileID: 8315058660400131413}
-  passThroughMask:
-    serializedVersion: 2
-    m_Bits: 256
+  groundCollider: {fileID: 0}
+  triggerCollider: {fileID: 0}
 --- !u!61 &1247770689524791249
 BoxCollider2D:
   m_ObjectHideFlags: 0

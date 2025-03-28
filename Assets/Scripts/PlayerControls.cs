@@ -43,10 +43,11 @@ public class PlayerControls : MonoBehaviour
 
 	public GameObject stompBlast;
 
-	private Collider2D currentPlatform;
-	public LayerMask passThroughMask;
-
 	private float playerDirection;
+
+	public Collider2D groundCollider;
+
+	public Collider2D triggerCollider;
 
     // Start is called before the first frame update
     void Start()
