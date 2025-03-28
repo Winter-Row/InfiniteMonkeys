@@ -177,4 +177,30 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Instantiate(Banner, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
     }
+
+    public void pickUp()
+    {
+        
+    }
+
+    public void addLife(int life)
+    {
+        lives += life;
+    }
+
+    public void doubleDmg()
+    {
+        Attack attackR = GameObject.Find("Right Slash").GetComponent<Attack>();
+        Attack attackL = GameObject.Find("Right Slash").GetComponent<Attack>();
+        attackR.damage = attackR.damage * 2;
+        attackL.damage = attackL.damage * 2;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Item")
+        {
+            collision.gameObject.GetComponent<Item>().storeItem(gameObject.GetComponent<PlayerBehaviour>());
+        }
+    }
 }

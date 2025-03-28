@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IStoreable 
 {
-    void storeItem();
+    void storeItem(PlayerBehaviour player);
 }
 
