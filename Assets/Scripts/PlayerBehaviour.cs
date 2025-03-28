@@ -18,6 +18,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     public GameObject livesManager;
 
+    private GameObject rightSlash;
+    private GameObject leftSlash;
+
+    private Attack attackR;
+    private Attack attackL;
+    public Image dbDmgImg;
+
 	[Header("Health System")]
 	public GameObject[] hitPoints; // UI GameObjects representing health
 	private int currentHits = 0; // Tracks damage taken
@@ -30,8 +37,15 @@ public class PlayerBehaviour : MonoBehaviour
         lives = 15;
         checkPoint = false;
         spawn = GameObject.FindGameObjectWithTag("Spawn").GetComponent<Spawn>();
+        dbDmgImg.enabled = false;
 
-        ResetHitPoints();
+        rightSlash = GameObject.Find("Right Slash");
+        leftSlash = GameObject.Find("Left Slash");
+
+		attackR = rightSlash.GetComponent<Attack>();
+		attackL = leftSlash.GetComponent<Attack>();
+
+		ResetHitPoints();
     }
 
     // Update is called once per frame
@@ -59,11 +73,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 	private void ChangeColor(GameObject obj, Color color)
 	{
-		Renderer renderer = obj.GetComponent<Renderer>();
-		if (renderer != null)
-		{
-			renderer.material.color = color;
-		}
+		obj.GetComponent<SpriteRenderer>().color = color;
 	}
 
 	public void PlayerHit()
@@ -185,21 +195,30 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void AddLife(int life)
     {
-        lives += life;
-        ResetHitPoints();
+        if(lives+life <= 15)
+        {
+			lives += life;
+		}
+
+        else
+        {
+            lives = 15;
+        }
     }
 
     public void DoubleDmg()
     {
-        Attack attackR = GameObject.Find("Right Slash").GetComponent<Attack>();
-        Attack attackL = GameObject.Find("Right Slash").GetComponent<Attack>();
-        attackR.damage = attackR.damage * 2;
-        attackL.damage = attackL.damage * 2;
+        attackR.damage *= 2;
+        rightSlash.GetComponent<SpriteRenderer>().color = Color.magenta;
+		attackL.damage *= 2;
+        leftSlash.GetComponent<SpriteRenderer>().color = Color.magenta;
+
+		dbDmgImg.enabled = true;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.F))
+        if(collision.gameObject.CompareTag("Item") && Input.GetKeyDown(KeyCode.F))
         {
             collision.gameObject.GetComponent<Item>().storeItem(gameObject.GetComponent<PlayerBehaviour>());
         }
