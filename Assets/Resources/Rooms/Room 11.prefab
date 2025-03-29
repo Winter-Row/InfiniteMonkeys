@@ -1049,7 +1049,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 11
-      m_TileSpriteIndex: 6
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1264,14 +1264,14 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: ca0dfc664a05abf43ac222602fea6fd3, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 565a0e579fc01444590fb1551d2cbc01, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: 21300000, guid: 959c880ea4691004b8ea7d8ff4863429, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: ca0dfc664a05abf43ac222602fea6fd3, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 7845c5959440da544849f4f49b03dac3, type: 3}
   - m_RefCount: 1
@@ -1571,6 +1571,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4856051241775178000}
     m_Modifications:
+    - target: {fileID: -5158420866513132165, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: health
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 146988694131558415, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1578,6 +1582,10 @@ PrefabInstance:
     - target: {fileID: 3243498238219119421, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_Name
       value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: m_Mass
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_RootOrder
@@ -1630,27 +1638,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
   m_PrefabInstance: {fileID: 5060391689211220530}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7726249621330196751 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3243498238219119421, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
-  m_PrefabInstance: {fileID: 5060391689211220530}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5710654972224737313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7726249621330196751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55e0dbfded29b2944b02ec1ce347afb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolSpeed: 1
-  groundCheck: {fileID: 0}
-  wallCheck: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  health: 1

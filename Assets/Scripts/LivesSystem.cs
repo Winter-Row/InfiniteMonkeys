@@ -13,14 +13,38 @@ public class LivesSystem : MonoBehaviour
 
 	public TextMeshProUGUI livesText;
 
+	public TextMeshProUGUI visLivesText;
+
 	void Start()
 	{
 		currentLives = maxLives;
+
+		livesText.color = Color.blue;
+		visLivesText.color = Color.blue;
 	}
 
 	void Update()
 	{
 		livesText.text = currentLives.ToString();
+		visLivesText.text = new string('|', currentLives);
+
+		if (currentLives < 15 && currentLives > 10)
+		{
+			livesText.color = Color.green;
+			visLivesText.color = Color.green;
+		}
+
+		if (currentLives < 11 && currentLives > 5)
+		{
+			livesText.color = Color.yellow;
+			visLivesText.color = Color.yellow;
+		}
+
+		if (currentLives < 6 && currentLives > 0)
+		{
+			livesText.color = Color.red;
+			visLivesText.color = Color.red;
+		}
 	}
 
 	public void LoseLife()
@@ -36,5 +60,6 @@ public class LivesSystem : MonoBehaviour
 	public void UpdateLives(int livesCount)
 	{
 		livesText.text = livesCount.ToString();
+		visLivesText.text = new string('|', livesCount);
 	}
 }

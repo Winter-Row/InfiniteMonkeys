@@ -6609,15 +6609,39 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5158420866513132165, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
       propertyPath: health
-      value: 2
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: -5158420866513132165, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
+      propertyPath: groundCheck
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: -5158420866513132165, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
       propertyPath: patrolSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -5158420866513132165, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 3243498238219119421, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
       propertyPath: m_Name
       value: RampageSlime
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 7b5ba42aecac46e4fbfbdc43a0b4116f, type: 2}
+    - target: {fileID: 3413194751672582992, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
+      propertyPath: m_SleepingMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
       propertyPath: m_RootOrder
@@ -6625,11 +6649,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.9
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.9
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 47829ff1a19c6f740a71e25618a382ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6687,31 +6711,39 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5158420866513132165, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: health
-      value: 1
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3243498238219119421, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_Name
       value: Slime (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: m_Mass
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 7b5ba42aecac46e4fbfbdc43a0b4116f, type: 2}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.73
+      value: -13.56
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.59
+      value: 1.64
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6761,11 +6793,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5158420866513132165, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: health
-      value: 1
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3243498238219119421, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_Name
       value: Slime (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: m_Mass
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 7b5ba42aecac46e4fbfbdc43a0b4116f, type: 2}
+    - target: {fileID: 3726461603729566242, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_RootOrder
@@ -6773,19 +6817,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.69
+      value: 14.28
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.46
+      value: 1.79
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6835,12 +6879,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5158420866513132165, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: health
-      value: 1
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -5158420866513132165, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -5158420866513132165, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: patrolSpeed
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3243498238219119421, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: m_Mass
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 7b5ba42aecac46e4fbfbdc43a0b4116f, type: 2}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -6855,11 +6915,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0796099
+      value: 7.49
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.44
+      value: -8.55
       objectReference: {fileID: 0}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6971,12 +7031,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5158420866513132165, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: health
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -5158420866513132165, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -5158420866513132165, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: patrolSpeed
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3243498238219119421, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_Name
       value: Slime (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: m_Mass
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413194751672582992, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 7b5ba42aecac46e4fbfbdc43a0b4116f, type: 2}
     - target: {fileID: 7007323003583101777, guid: 0304a7a8dc9344d4f918ff9dadd0a417, type: 3}
       propertyPath: m_RootOrder
       value: 5

@@ -47,10 +47,11 @@ public class PlayerControls : MonoBehaviour
 
 	public GameObject stompBlast;
 
-	private Collider2D currentPlatform;
-	public LayerMask passThroughMask;
-
 	private float playerDirection;
+
+	public Collider2D groundCollider;
+
+	public Collider2D triggerCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -258,7 +259,7 @@ public class PlayerControls : MonoBehaviour
 		while (elapsedTime < attackDuration)
 		{
 			elapsedTime += Time.deltaTime;
-			rigidBody.MovePosition(Vector2.Lerp(startPosition, targetPosition, elapsedTime / attackDuration));
+			/*rigidBody.MovePosition(Vector2.Lerp(startPosition, targetPosition, elapsedTime / attackDuration));*/
 			yield return null;
 		}
 
