@@ -234,7 +234,6 @@ public class PlayerControls : MonoBehaviour
 		if (playerDirection == 1)
 		{
 			rightSlash.SetActive(true);
-
             rightSlashAnimator.SetBool("isAttackingRight", true);
             animator.SetBool("isAttacking", true);
         }
