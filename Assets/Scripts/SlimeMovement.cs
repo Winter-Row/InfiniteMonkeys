@@ -67,18 +67,22 @@ public class SlimeMovement : MonoBehaviour
     }
 
 	void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.CompareTag("Player") && collision.gameObject.GetComponent<PlayerControls>().IsDodging() == false)
-		{
-			collision.gameObject.GetComponent<PlayerBehaviour>().PlayerHit();
-		}
-		else if (collision.CompareTag("Attack"))
-		{
-			if (Time.time - lastHitTime > hitCooldown)
-			{
-				health -= collision.gameObject.GetComponent<Attack>().getDamage();
-				lastHitTime = Time.time;
-			}
-		}
-	}
+{
+    if (collision.CompareTag("Player") && collision.gameObject.GetComponent<PlayerControls>().IsDodging() == false)
+    {
+        collision.gameObject.GetComponent<PlayerBehaviour>().PlayerHit();
+    }
+    else if (collision.CompareTag("Attack"))
+    {
+        if (Time.time - lastHitTime > hitCooldown)
+        {
+            int damage = collision.gameObject.GetComponent<Attack>().getDamage();
+            health -= damage;
+            lastHitTime = Time.time;
+
+            Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
+            rb.velocity = new Vector2(knockbackDirection.x * 3f, rb.velocity.y);
+        }
+    }
+}
 }

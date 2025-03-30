@@ -18,7 +18,7 @@ public class PlayerControls : MonoBehaviour
 	private bool isDodging = false;
 
 	private readonly float attackSpeed = 1.0f;
-	private readonly float attackDuration = 0.1f;
+	private readonly float attackDuration = 0.2f;
 	private readonly float attackCooldown = 1.0f;
 	private float attackTimer;
 
