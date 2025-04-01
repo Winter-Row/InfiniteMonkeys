@@ -202,26 +202,41 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void AddLife(int life)
     {
-        if(lives+life <= 15)
-        {
-			lives += life;
-		}
+        int previousLives = lives;
 
+        if (lives + life <= 15)
+        {
+            lives += life;
+        }
         else
         {
             lives = 15;
         }
+
+        Debug.Log("Life updated: " + previousLives + " -> " + lives);
+
+        LivesSystem livesSystem = livesManager.GetComponent<LivesSystem>();
+        if (livesSystem != null)
+        {
+            livesSystem.UpdateLives(lives);
+        }
+        else
+        {
+            Debug.LogError("LivesSystem not found!");
+        }
     }
+
 
     public void DoubleDmg()
     {
+        Debug.Log("Double damage activated");
         attackR.damage *= 2;
         rightSlash.GetComponent<SpriteRenderer>().color = Color.magenta;
-		attackL.damage *= 2;
+        attackL.damage *= 2;
         leftSlash.GetComponent<SpriteRenderer>().color = Color.magenta;
-
-		dbDmgImg.enabled = true;
+        dbDmgImg.enabled = true;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Item"))

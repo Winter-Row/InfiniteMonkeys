@@ -53,13 +53,15 @@ public class LivesSystem : MonoBehaviour
 		{
 			currentLives--;
 			Debug.Log("Life lost");
-		}
+            UpdateLives(currentLives);
+        }
 	}
 
 
 	public void UpdateLives(int livesCount)
 	{
-		livesText.text = livesCount.ToString();
-		visLivesText.text = new string('|', livesCount);
-	}
+        currentLives = livesCount;  // Update currentLives to prevent UI resetting
+        livesText.text = currentLives.ToString();
+        visLivesText.text = new string('|', currentLives);
+    }
 }

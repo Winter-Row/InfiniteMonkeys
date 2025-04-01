@@ -17,18 +17,23 @@ public class Item : MonoBehaviour, IStoreable
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
     public void storeItem(PlayerBehaviour player)
     {
-        if(gameObject.name == "ItemOne")
+        Debug.Log("storeItem called for: " + gameObject.name);
+
+        if (gameObject.name.Contains("ItemOne"))
         {
             player.AddLife(1);
-        }else if(gameObject.name == "ItemTwo")
+        }
+        else if (gameObject.name.Contains("ItemTwo"))
         {
             player.DoubleDmg();
         }
-        Debug.Log("Picked up");
+
+        Debug.Log("Picked up: " + gameObject.name);
         Destroy(gameObject);
     }
 }
