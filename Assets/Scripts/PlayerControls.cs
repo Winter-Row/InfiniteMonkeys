@@ -47,6 +47,8 @@ public class PlayerControls : MonoBehaviour
 
 	public AudioClip jumpSound2;
 
+	public AudioClip stompSound;
+
     Animator animator;
 
     private GameObject rightSlash;
@@ -228,12 +230,12 @@ public class PlayerControls : MonoBehaviour
 		// Temporarily disable gravity
 		rigidBody.gravityScale = 0;
 
+		audioSource.PlayOneShot(dodgeSound);
 		float elapsedTime = 0f;
 		while (elapsedTime < dodgeDuration)
 		{
 			elapsedTime += Time.deltaTime;
 			rigidBody.MovePosition(Vector2.Lerp(startPosition, targetPosition, elapsedTime / dodgeDuration));
-			audioSource.PlayOneShot(dodgeSound);
 			yield return null;
 		}
 
@@ -314,6 +316,7 @@ public class PlayerControls : MonoBehaviour
 
 	private IEnumerator StompBlast()
 	{
+		audioSource.PlayOneShot(stompSound);
 		stompBlast.SetActive(true);
 
 		yield return new WaitForSeconds(0.2f);
