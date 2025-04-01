@@ -7,8 +7,9 @@ public class Cabinet : MonoBehaviour
     private GameObject prompt;
     private Animator animator;
     private List<GameObject> itemList = new List<GameObject>();
-    private bool opened;
-    // Start is called before the first frame update
+    private bool opened = false;
+    private bool playerNearby = false; // Track if player is in range
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -23,10 +24,13 @@ public class Cabinet : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Check for input only when the player is nearby
+        if (playerNearby && Input.GetKeyDown(KeyCode.F) && !opened)
+        {
+            OpenCabinet();
+        }
     }
 
     public void setOpened(bool flag)
@@ -36,35 +40,35 @@ public class Cabinet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(opened == false)
+        if (collision.gameObject.CompareTag("Player") && !opened)
         {
+            playerNearby = true;
             prompt.SetActive(true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        prompt.SetActive(false);
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.F) && !opened)
-            {
-                animator.SetBool("Break", true);
-                prompt.SetActive(false);
-                setOpened(true);
-                Debug.Log("Open");
-                SpawnRandomItem();
-            }
+            playerNearby = false;
+            prompt.SetActive(false);
         }
     }
+
+    private void OpenCabinet()
+    {
+        animator.SetBool("Break", true);
+        prompt.SetActive(false);
+        setOpened(true);
+        Debug.Log("Open");
+        SpawnRandomItem();
+    }
+
     private void SpawnRandomItem()
     {
         if (itemList.Count > 0)
         {
-            // Pick a random item from the list
             int randomIndex = Random.Range(0, itemList.Count);
             GameObject randomItem = itemList[randomIndex];
 

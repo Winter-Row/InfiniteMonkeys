@@ -25,7 +25,9 @@ public class PlayerBehaviour : MonoBehaviour
     private Attack attackL;
     public Image dbDmgImg;
 
-	[Header("Health System")]
+    private Item nearbyItem;
+
+    [Header("Health System")]
 	public GameObject[] hitPoints; // UI GameObjects representing health
 	private int currentHits = 0; // Tracks damage taken
 	private bool canTakeDamage = true; // Controls damage delay
@@ -55,7 +57,12 @@ public class PlayerBehaviour : MonoBehaviour
 		{
             OnDeath();
 		}
-	}
+        if (Input.GetKeyDown(KeyCode.F) && nearbyItem != null)
+        {
+            nearbyItem.storeItem(this); 
+            nearbyItem = null; 
+        }
+    }
 
 	/*
      * Decrements the lives veriable by 1
@@ -215,12 +222,19 @@ public class PlayerBehaviour : MonoBehaviour
 
 		dbDmgImg.enabled = true;
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Item") && Input.GetKeyDown(KeyCode.F))
+        if (collision.gameObject.CompareTag("Item"))
         {
-            collision.gameObject.GetComponent<Item>().storeItem(gameObject.GetComponent<PlayerBehaviour>());
+            nearbyItem = collision.gameObject.GetComponent<Item>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Item"))
+        {
+            nearbyItem = null; 
         }
     }
 }
