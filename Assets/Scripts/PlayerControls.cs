@@ -37,6 +37,18 @@ public class PlayerControls : MonoBehaviour
 
 	private SpriteRenderer spriteRenderer;
 
+	private AudioSource audioSource;
+
+	public AudioClip slashSound;
+
+	public AudioClip dodgeSound;
+
+	public AudioClip jumpSound;
+
+	public AudioClip jumpSound2;
+
+	public AudioClip stompSound;
+
     Animator animator;
 
     private GameObject rightSlash;
@@ -59,6 +71,7 @@ public class PlayerControls : MonoBehaviour
 		rigidBody = GetComponent<Rigidbody2D>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+		audioSource = GetComponent<AudioSource>();
 
         rightSlash = GameObject.Find("Right Slash");
         rightSlashAnimator = rightSlash.GetComponent<Animator>();
@@ -189,12 +202,14 @@ public class PlayerControls : MonoBehaviour
 		{
             animator.SetBool("isJumping", true);
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPow);
-            
-            //Debug.Log(animator.GetBool("isJumping"));
-        }
+			audioSource.PlayOneShot(jumpSound);
+
+			//Debug.Log(animator.GetBool("isJumping"));
+		}
 		else if (Input.GetKeyDown(KeyCode.Space) && !onGround && hasDoubleJump)
 		{
 			rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPow);
+			audioSource.PlayOneShot(jumpSound2);
 			hasDoubleJump = false;
 			animator.SetBool("isJumping", false);
 			animator.SetBool("isDoubleJumping", true);
@@ -215,6 +230,7 @@ public class PlayerControls : MonoBehaviour
 		// Temporarily disable gravity
 		rigidBody.gravityScale = 0;
 
+		audioSource.PlayOneShot(dodgeSound);
 		float elapsedTime = 0f;
 		while (elapsedTime < dodgeDuration)
 		{
@@ -249,10 +265,10 @@ public class PlayerControls : MonoBehaviour
 
 		float moveInput = Input.GetAxisRaw("Horizontal");
 		Vector2 attackDirection = GetDirection(playerDirection);
-		Vector2 startPosition = rigidBody.position;
-		Vector2 targetPosition = startPosition + attackDirection * attackSpeed;
 
 		rigidBody.gravityScale = 0;
+
+		audioSource.PlayOneShot(slashSound);
 
 		float elapsedTime = 0f;
 		while (elapsedTime < attackDuration)
@@ -300,6 +316,7 @@ public class PlayerControls : MonoBehaviour
 
 	private IEnumerator StompBlast()
 	{
+		audioSource.PlayOneShot(stompSound);
 		stompBlast.SetActive(true);
 
 		yield return new WaitForSeconds(0.2f);

@@ -21,6 +21,12 @@ public class PlayerBehaviour : MonoBehaviour
     private GameObject rightSlash;
     private GameObject leftSlash;
 
+    private AudioSource audioSource;
+
+    public AudioClip hitSound;
+
+    public AudioClip deathSound;
+
     private Attack attackR;
     private Attack attackL;
     public Image dbDmgImg;
@@ -46,6 +52,8 @@ public class PlayerBehaviour : MonoBehaviour
 
 		attackR = rightSlash.GetComponent<Attack>();
 		attackL = leftSlash.GetComponent<Attack>();
+
+        audioSource = GetComponent<AudioSource>();
 
 		ResetHitPoints();
     }
@@ -96,6 +104,7 @@ public class PlayerBehaviour : MonoBehaviour
 		canTakeDamage = false; // Prevents taking damage multiple times in quick succession
 
 		ChangeColor(hitPoints[currentHits], Color.red); // Change left-most hit point to red
+		audioSource.PlayOneShot(hitSound);
 		currentHits++;
 
 		if (currentHits >= hitPoints.Length) // If all are red, lose a life
@@ -154,6 +163,7 @@ public class PlayerBehaviour : MonoBehaviour
 	{
 		if (lives > 0)
 		{
+            audioSource.PlayOneShot(deathSound);
 			Instantiate(deadCharacter, transform.position, Quaternion.identity);
 			RespawnPlayer();
 			lives--;
