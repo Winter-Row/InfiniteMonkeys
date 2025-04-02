@@ -184,6 +184,7 @@ public class PlayerControls : MonoBehaviour
 		if (onGround && stomping)
 		{
 			StartCoroutine(StompBlast());
+
 		}
 
 		animator.SetFloat("xVelocity", Mathf.Abs(moveHorizontal));
@@ -328,7 +329,6 @@ public class PlayerControls : MonoBehaviour
 		if (!onGround)
 		{
 			stomping = true;
-			SFXController.instance.PlaySoundFXClip(stompSound, transform, 1f);
 			rigidBody.velocity = new Vector2(rigidBody.velocity.x, -50.0f);
 		}
 	}
@@ -338,8 +338,12 @@ public class PlayerControls : MonoBehaviour
 		stompBlast.SetActive(true);
 
 		yield return new WaitForSeconds(0.2f);
-
+		if(stompBlast.activeSelf)
+		{
+			SFXController.instance.PlaySoundFXClip(stompSound, transform, 1f);
+		}
 		stompBlast.SetActive(false);
+
 		stomping = false;
 	}
 

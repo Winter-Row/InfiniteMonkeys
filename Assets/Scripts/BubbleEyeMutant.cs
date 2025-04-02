@@ -6,12 +6,10 @@ public class BubbleEyeMutant : MonoBehaviour
     public float moveSpeed = 2f;
     public float detectionRange = 3f;
     public Transform player;
-    public Transform attackPoint;
     public Transform groundCheck, wallCheck;
     public LayerMask groundLayer;
     public int health = 2;
     public float groundCheckRadius = 0.2f;
-    public float attackRange = 2.5f;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -22,20 +20,13 @@ public class BubbleEyeMutant : MonoBehaviour
     private float patrolCooldown = 0f;
     private float patrolDistance = 0f;
     private float maxPatrolDistance = 3f;
-    private int attackCount = 0;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         rb.freezeRotation = true;
-
-        InvokeRepeating(nameof(Attack), 3f, 3f); // Attack every 3 seconds
-
-        // Call Die() after 5 seconds to simulate death for testing
-        //Invoke(nameof(Die), 5f); // Enemy will die after 5 seconds
     }
-
 
     void Update()
     {
@@ -91,47 +82,6 @@ public class BubbleEyeMutant : MonoBehaviour
         }
     }
 
-    void Attack()
-    {
-        if (isAttacking) return; // If already attacking, exit to prevent multiple attacks
-
-        isAttacking = true; // Start the attack sequence
-        anim.SetBool("Walk", false); // Stop walking animation
-        anim.SetTrigger("Attack"); // Trigger the attack animation
-        rb.velocity = Vector2.zero; // Stop any movement during attack
-
-        attackCount++;
-        if (attackCount >= 4) // Flip every 4 attacks for variety
-        {
-            Flip(); // Flip direction after 4 attacks
-            attackCount = 0;
-        }
-
-        StartCoroutine(ResetAttack()); // Reset attack flag after delay
-    }
-
-    IEnumerator ResetAttack()
-    {
-        yield return new WaitForSeconds(1f); // Attack cooldown
-        isAttacking = false; // Allow next attack after cooldown
-    }
-
-    // Called at the attack animation event to deal damage to the player
-    void DealDamage()
-    {
-        Collider2D hitPlayer = Physics2D.OverlapCircle(attackPoint.position, attackRange, LayerMask.GetMask("Player"));
-
-        if (hitPlayer != null && !hitPlayer.GetComponent<PlayerControls>().IsDodging())
-        {
-            Debug.Log("Player detected! Attacking...");
-            hitPlayer.GetComponent<PlayerBehaviour>().OnDeath(); // Player dies if hit by attack
-        }
-        else
-        {
-            Debug.Log("No player detected or player is dodging.");
-        }
-    }
-
     bool IsHittingWall()
     {
         return Physics2D.Raycast(wallCheck.position, Vector2.right * (movingRight ? 1 : -1), 0.3f, groundLayer);
@@ -168,15 +118,15 @@ public class BubbleEyeMutant : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        if (attackPoint != null)
+        // Visualize ground check radius
+        if (groundCheck != null)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(attackPoint.position, attackRange); // Visualize attack range
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
     }
-
-    // Behavior summary:
-    // The BubbleEyeMutant patrols an area until it detects the player. Once detected, it switches to following the player.
-    // It attacks the player at regular intervals and changes direction after a set number of attacks for variety.
-    // If it hits an obstacle or reaches the end of its patrol area, it flips direction and resumes patrolling.
 }
+// Behavior summary:
+// The BubbleEyeMutant patrols an area until it detects the player. Once detected, it switches to following the player.
+// It attacks the player at regular intervals and changes direction after a set number of attacks for variety.
+// If it hits an obstacle or reaches the end of its patrol area, it flips direction and resumes patrolling.
