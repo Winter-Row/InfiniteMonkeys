@@ -27,6 +27,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private AudioClip deathSound2;
     [SerializeField] private AudioClip hurtSound;
     [SerializeField] private AudioClip hurtSound2;
+    [SerializeField] private AudioClip pickupSound;
 
     private Attack attackR;
     private Attack attackL;
@@ -227,6 +228,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void AddLife(int life)
     {
+        // play sound effect for picking up power up
+        SFXController.instance.PlaySoundFXClip(pickupSound, transform, 1f);
         int previousLives = lives;
 
         if (lives + life <= 15)
@@ -254,6 +257,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void DoubleDmg()
     {
+        // play sound effect for picking up power up
+        SFXController.instance.PlaySoundFXClip(pickupSound, transform, 1f);
         Debug.Log("Double damage activated");
         attackR.damage *= 2;
         rightSlash.GetComponent<SpriteRenderer>().color = Color.magenta;
