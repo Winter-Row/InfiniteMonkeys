@@ -1541,11 +1541,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRoom: {fileID: 4552584441491924965, guid: 34c05a5366d8cfa45a63d93378a2aab4, type: 3}
-  finishRoom: {fileID: -2739930897454710898, guid: ddca5a00362f9074eb6261660fcf1c62, type: 3}
-  rooms: []
+  finishRoom: {fileID: 4965772566682421423, guid: ddca5a00362f9074eb6261660fcf1c62, type: 3}
+  checkpointRoom: {fileID: 7267012614759763791, guid: 71eb735aba8a41c4093c2ecbf9fb0dc1, type: 3}
   roomCount: 0
   roomsToGenerate: 6
-  generatedRooms: []
 --- !u!4 &729632382
 Transform:
   m_ObjectHideFlags: 0
