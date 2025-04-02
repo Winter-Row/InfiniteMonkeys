@@ -32,6 +32,8 @@ public class PlayerBehaviour : MonoBehaviour
     private Attack attackR;
     private Attack attackL;
     public Image dbDmgImg;
+    public Image jumpBoostImg;
+    public Image speedBoostImg;
 
     private float defaultJumpPower = 15.0f;
     private float defaultRunSpeed = 8.0f;
@@ -54,6 +56,8 @@ public class PlayerBehaviour : MonoBehaviour
         checkPoint = false;
         spawn = GameObject.FindGameObjectWithTag("Spawn").GetComponent<Spawn>();
         dbDmgImg.enabled = false;
+        jumpBoostImg.enabled = false;
+        speedBoostImg.enabled = false;
 
         rightSlash = GameObject.Find("Right Slash");
         leftSlash = GameObject.Find("Left Slash");
@@ -277,7 +281,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         SFXController.instance.PlaySoundFXClip(pickupSound, transform, 1f);
         Debug.Log("Jump Boost Activated");
-
+        jumpBoostImg.enabled = true;
         PlayerControls playerControls = GetComponent<PlayerControls>();
         if (playerControls != null)
         {
@@ -293,6 +297,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (playerControls != null)
         {
             playerControls.SetJumpPower(defaultJumpPower);
+            jumpBoostImg.enabled = false;
         }
     }
 
@@ -300,7 +305,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         SFXController.instance.PlaySoundFXClip(pickupSound, transform, 1f);
         Debug.Log("Speed Boost Activated");
-
+        speedBoostImg.enabled = true;
         PlayerControls playerControls = GetComponent<PlayerControls>();
         if (playerControls != null)
         {
@@ -317,6 +322,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (playerControls != null)
         {
             playerControls.SetRunSpeed(defaultRunSpeed);
+            speedBoostImg.enabled=false;
         }
     }
 
