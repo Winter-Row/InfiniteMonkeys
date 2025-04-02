@@ -2082,14 +2082,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onGround: 0
   hasDoubleJump: 0
-  slashSound: {fileID: 8300000, guid: 4202d5387e31f434c815264f300058ed, type: 3}
-  dodgeSound: {fileID: 8300000, guid: e6c1a9b2bd39ade44b582362f30959bc, type: 3}
-  jumpSound: {fileID: 8300000, guid: 9a937d9cd4a28d145ae5ea0e3320d177, type: 3}
-  jumpSound2: {fileID: 8300000, guid: d25abc52c19fe894a934fc3e312f0686, type: 3}
-  stompSound: {fileID: 8300000, guid: 42982f4ede3af0e45af5a8630dab8400, type: 3}
   stompBlast: {fileID: 8315058660400131413}
   groundCollider: {fileID: 0}
   triggerCollider: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: 1e53542a7b3eabc47aa5ac8ff4e2a7c4, type: 3}
+  doubleJumpSound: {fileID: 8300000, guid: 939f1f52033ecc647baf7956de66a6c6, type: 3}
 --- !u!61 &1247770689524791249
 BoxCollider2D:
   m_ObjectHideFlags: 0
