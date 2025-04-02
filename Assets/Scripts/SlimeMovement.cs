@@ -29,7 +29,12 @@ public class SlimeMovement : MonoBehaviour
 
         if(health <= 0)
         {
-            this.gameObject.SetActive(false);
+            FinishedLevel levelManager = FindObjectOfType<FinishedLevel>();
+            if (levelManager != null)
+            {
+                levelManager.SlimeKilled(); // Notify that a slime has been killed
+            }
+            Destroy(gameObject); // Remove slime from scene
         }
     }
 
