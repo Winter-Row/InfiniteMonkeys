@@ -2064,6 +2064,7 @@ MonoBehaviour:
   deathSound2: {fileID: 8300000, guid: 7e4a64c36fa5d09409cb5feddf9f5eec, type: 3}
   hurtSound: {fileID: 8300000, guid: 7f5e8715ce1fd154797c67e3eaa2e81a, type: 3}
   hurtSound2: {fileID: 8300000, guid: 7d5b68e7ac27e02408aa4a2eb869f069, type: 3}
+  pickupSound: {fileID: 8300000, guid: 8b404c03955750a45b219d039a4e102e, type: 3}
   dbDmgImg: {fileID: 2848765415982485507}
   hitPoints:
   - {fileID: 6574142071887890248}
