@@ -58,8 +58,8 @@ public class PlayerControls : MonoBehaviour
 	[SerializeField] private AudioClip doubleJumpSound;
 	[SerializeField] private AudioClip attackSound;
 	[SerializeField] private AudioClip attackSound2;
-	[SerializeField] private AudioClip stompSound;
 	[SerializeField] private AudioClip dodgeSound;
+	[SerializeField] private AudioClip stompSound;
 
     // Start is called before the first frame update
     void Start()
@@ -327,6 +327,7 @@ public class PlayerControls : MonoBehaviour
 		if (!onGround)
 		{
 			stomping = true;
+			SFXController.instance.PlaySoundFXClip(stompSound, transform, 1f);
 			rigidBody.velocity = new Vector2(rigidBody.velocity.x, -50.0f);
 		}
 	}
