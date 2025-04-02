@@ -60,6 +60,7 @@ public class PlayerControls : MonoBehaviour
 	[SerializeField] private AudioClip attackSound;
 	[SerializeField] private AudioClip attackSound2;
 	[SerializeField] private AudioClip stompSound;
+	[SerializeField] private AudioClip dodgeSound;
 
     // Start is called before the first frame update
     void Start()
@@ -226,6 +227,8 @@ public class PlayerControls : MonoBehaviour
 
 	private IEnumerator Dodge()
 	{
+		//play sound effect for dodge
+		SFXController.instance.PlaySoundFXClip(dodgeSound, transform, 1f);
 		dodging = true;
 		runSpeed = 0f;
 		dodgeTimer = Time.time + dodgeCooldown;

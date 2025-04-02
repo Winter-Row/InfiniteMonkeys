@@ -2249,6 +2249,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 46e19b3f574b6584180b66a2f31f9f37, type: 3}
   attackSound2: {fileID: 8300000, guid: 85b209cf58c513a46858c80b72fda1ab, type: 3}
   stompSound: {fileID: 0}
+  dodgeSound: {fileID: 8300000, guid: 24a9ea5af6ce1a34bba6562f27296b38, type: 3}
 --- !u!61 &1247770689524791249
 BoxCollider2D:
   m_ObjectHideFlags: 0
