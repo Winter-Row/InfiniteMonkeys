@@ -23,9 +23,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     private AudioSource audioSource;
 
-    public AudioClip hitSound;
-
-    public AudioClip deathSound;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip deathSound2;
+    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip hurtSound2;
 
     private Attack attackR;
     private Attack attackL;
@@ -52,8 +53,6 @@ public class PlayerBehaviour : MonoBehaviour
 
 		attackR = rightSlash.GetComponent<Attack>();
 		attackL = leftSlash.GetComponent<Attack>();
-
-        audioSource = GetComponent<AudioSource>();
 
 		ResetHitPoints();
     }
@@ -101,10 +100,19 @@ public class PlayerBehaviour : MonoBehaviour
 
 	private IEnumerator TakeDamageWithDelay()
 	{
+        // play sound effect for taking damage
+        if(Random.Range(0, 2) == 0)
+            {
+                SFXController.instance.PlaySoundFXClip(hurtSound, transform, 1f);
+            }
+            else
+            {
+                SFXController.instance.PlaySoundFXClip(hurtSound2, transform, 1f);
+            }
+
 		canTakeDamage = false; // Prevents taking damage multiple times in quick succession
 
 		ChangeColor(hitPoints[currentHits], Color.red); // Change left-most hit point to red
-		audioSource.PlayOneShot(hitSound);
 		currentHits++;
 
 		if (currentHits >= hitPoints.Length) // If all are red, lose a life
@@ -163,7 +171,14 @@ public class PlayerBehaviour : MonoBehaviour
 	{
 		if (lives > 0)
 		{
-            audioSource.PlayOneShot(deathSound);
+            if(Random.Range(0, 2) == 0)
+            {
+                SFXController.instance.PlaySoundFXClip(deathSound, transform, 1f);
+            }
+            else
+            {
+                SFXController.instance.PlaySoundFXClip(deathSound2, transform, 1f);
+            }
 			Instantiate(deadCharacter, transform.position, Quaternion.identity);
 			RespawnPlayer();
 			lives--;
