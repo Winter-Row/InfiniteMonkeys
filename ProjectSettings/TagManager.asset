@@ -12,6 +12,9 @@ TagManager:
   - SpawnRoom
   - CheckPoint
   - Enemy
+  - MenuBtns
+  - Options
+  - CheckpointRoom
   layers:
   - Default
   - TransparentFX
