@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class ProjectileBehaviour : MonoBehaviour
+public class SlowBehvaiour : MonoBehaviour
 {
-    public int damage = 10;
-    public float speed = 5f;
+    public int damage = 4;
+    public float speed = 4f;
     private Vector2 direction;
 
     private Rigidbody2D rb;
@@ -39,7 +39,7 @@ public class ProjectileBehaviour : MonoBehaviour
         }
 
         // If the projectile collides with any other object (e.g., ground, walls), destroy it
-        if (other.CompareTag("Room"))
+        if (other.CompareTag("Tilemap"))
         {
             Destroy(gameObject);
         }
