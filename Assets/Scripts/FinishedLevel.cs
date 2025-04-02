@@ -28,6 +28,10 @@ public class FinishedLevel : MonoBehaviour
             {
                 SceneManager.LoadScene(2);
             }
+            else if(sceneNum == 2)
+            {
+                SceneManager.LoadScene(3);
+            }
             else
             {
                 //if the player tag is detected call the Pause Player Function
