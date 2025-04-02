@@ -8,7 +8,7 @@ public class PlayerControls : MonoBehaviour
 {
 	private float runSpeed = 8.0f;
     private float moveHorizontal;
-    private readonly float jumpPow = 15.0f;
+    private float jumpPow = 15.0f;
 	private readonly float maxFallSpeed = -30.0f;
 
 	private readonly float dodgeSpeed = 5.0f;
@@ -98,7 +98,19 @@ public class PlayerControls : MonoBehaviour
 		ChangeDirection();
     }
 
-	void SpeedControl()
+    public void SetJumpPower(float newJumpPower)
+    {
+        jumpPow = newJumpPower;
+    }
+
+    public void SetRunSpeed(float newSpeed)
+    {
+        Debug.Log("Speed set to: " + newSpeed);
+        runSpeed = newSpeed;
+    }
+
+
+    void SpeedControl()
 	{
 		if (rigidBody.velocity.y < maxFallSpeed)
 		{
@@ -182,10 +194,11 @@ public class PlayerControls : MonoBehaviour
         {
             runSpeed = 0.5f;
         }
-        else if (!attacking)
+        else
         {
-            runSpeed = 8.0f;
+            runSpeed = Mathf.Max(runSpeed, runSpeed); // Ensures boosted speed isn't overridden
         }
+
         float playerInput = Input.GetAxis("Horizontal");
 		rigidBody.velocity = new Vector2(playerInput * runSpeed, rigidBody.velocity.y);
 	}

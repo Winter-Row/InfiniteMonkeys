@@ -33,6 +33,12 @@ public class PlayerBehaviour : MonoBehaviour
     private Attack attackL;
     public Image dbDmgImg;
 
+    private float defaultJumpPower = 15.0f;
+    private float defaultRunSpeed = 8.0f;
+    private float boostedJumpPower = 25.0f;  // Adjust as needed
+    private float boostedRunSpeed = 12.0f;   // Adjust as needed
+    private float powerupDuration = 10.0f;
+
     private Item nearbyItem;
 
     [Header("Health System")]
@@ -265,6 +271,53 @@ public class PlayerBehaviour : MonoBehaviour
         attackL.damage *= 2;
         leftSlash.GetComponent<SpriteRenderer>().color = Color.magenta;
         dbDmgImg.enabled = true;
+    }
+
+    public void JumpBoost()
+    {
+        SFXController.instance.PlaySoundFXClip(pickupSound, transform, 1f);
+        Debug.Log("Jump Boost Activated");
+
+        PlayerControls playerControls = GetComponent<PlayerControls>();
+        if (playerControls != null)
+        {
+            playerControls.SetJumpPower(boostedJumpPower);
+            StartCoroutine(ResetJumpBoost());
+        }
+    }
+
+    private IEnumerator ResetJumpBoost()
+    {
+        yield return new WaitForSeconds(powerupDuration);
+        PlayerControls playerControls = GetComponent<PlayerControls>();
+        if (playerControls != null)
+        {
+            playerControls.SetJumpPower(defaultJumpPower);
+        }
+    }
+
+    public void SpeedBoost()
+    {
+        SFXController.instance.PlaySoundFXClip(pickupSound, transform, 1f);
+        Debug.Log("Speed Boost Activated");
+
+        PlayerControls playerControls = GetComponent<PlayerControls>();
+        if (playerControls != null)
+        {
+            playerControls.SetRunSpeed(boostedRunSpeed);
+            StartCoroutine(ResetSpeedBoost());
+        }
+    }
+
+    private IEnumerator ResetSpeedBoost()
+    {
+        yield return new WaitForSeconds(powerupDuration);
+        Debug.Log("Speed boost expired, resetting speed.");
+        PlayerControls playerControls = GetComponent<PlayerControls>();
+        if (playerControls != null)
+        {
+            playerControls.SetRunSpeed(defaultRunSpeed);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -32,6 +32,14 @@ public class Item : MonoBehaviour, IStoreable
         {
             player.DoubleDmg();
         }
+        else if (gameObject.name.Contains("ItemThree"))
+        {
+            player.JumpBoost();
+        }
+        else if (gameObject.name.Contains("ItemFour"))
+        {
+            player.SpeedBoost();
+        }
 
         Debug.Log("Picked up: " + gameObject.name);
         Destroy(gameObject);
