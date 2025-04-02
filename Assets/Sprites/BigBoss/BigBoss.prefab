@@ -150,7 +150,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  projectilePrefab: {fileID: 3683541751508501631, guid: 479088d514f18034d9e45681f48af393, type: 3}
+  projectilePrefab: {fileID: 810336665707323246, guid: 176f2e192a68b744a8ac11313a521a06, type: 3}
   health: 14
   hitCooldown: 0.5
 --- !u!61 &-2656918652754542563

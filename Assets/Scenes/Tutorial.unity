@@ -4083,6 +4083,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1809092029885471245, guid: 85adf816135c75342b3ff8b467cc9300, type: 3}
+      propertyPath: m_TagString
+      value: Room
+      objectReference: {fileID: 0}
     - target: {fileID: 5060149608878021833, guid: 85adf816135c75342b3ff8b467cc9300, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4134,6 +4138,10 @@ PrefabInstance:
     - target: {fileID: 6766698250447739040, guid: 85adf816135c75342b3ff8b467cc9300, type: 3}
       propertyPath: m_Name
       value: Room 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766698250447739040, guid: 85adf816135c75342b3ff8b467cc9300, type: 3}
+      propertyPath: m_TagString
+      value: Room
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85adf816135c75342b3ff8b467cc9300, type: 3}
