@@ -56,6 +56,9 @@ public class PlayerControls : MonoBehaviour
 
 	[SerializeField] private AudioClip jumpSound;
 	[SerializeField] private AudioClip doubleJumpSound;
+	[SerializeField] private AudioClip attackSound;
+	[SerializeField] private AudioClip attackSound2;
+	[SerializeField] private AudioClip stompSound;
 
     // Start is called before the first frame update
     void Start()
@@ -237,8 +240,18 @@ public class PlayerControls : MonoBehaviour
 
 	private IEnumerator Attack()
 	{
+		//play sound effect for attack
+		if(Random.Range(0, 2) == 0)
+		{
+			SFXController.instance.PlaySoundFXClip(attackSound, transform, 1f);
+		}
+		else
+		{
+			SFXController.instance.PlaySoundFXClip(attackSound2, transform, 1f);
+		}
 		if (playerDirection == 1)
 		{
+
 			rightSlash.SetActive(true);
             rightSlashAnimator.SetBool("isAttackingRight", true);
             animator.SetBool("isAttacking", true);

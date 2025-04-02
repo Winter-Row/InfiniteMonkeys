@@ -2089,6 +2089,9 @@ MonoBehaviour:
   triggerCollider: {fileID: 0}
   jumpSound: {fileID: 8300000, guid: 1e53542a7b3eabc47aa5ac8ff4e2a7c4, type: 3}
   doubleJumpSound: {fileID: 8300000, guid: 939f1f52033ecc647baf7956de66a6c6, type: 3}
+  attackSound: {fileID: 8300000, guid: 46e19b3f574b6584180b66a2f31f9f37, type: 3}
+  attackSound2: {fileID: 8300000, guid: 85b209cf58c513a46858c80b72fda1ab, type: 3}
+  stompSound: {fileID: 0}
 --- !u!61 &1247770689524791249
 BoxCollider2D:
   m_ObjectHideFlags: 0
