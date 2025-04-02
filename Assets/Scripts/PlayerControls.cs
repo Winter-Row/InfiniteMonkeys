@@ -10,8 +10,9 @@ public class PlayerControls : MonoBehaviour
     private float moveHorizontal;
     private float jumpPow = 15.0f;
 	private readonly float maxFallSpeed = -30.0f;
+    private float defaultRunSpeed;
 
-	private readonly float dodgeSpeed = 5.0f;
+    private readonly float dodgeSpeed = 5.0f;
 	private readonly float dodgeDuration = 0.2f;
 	private readonly float dodgeCooldown = 1.0f;
 	private float dodgeTimer;
@@ -74,9 +75,9 @@ public class PlayerControls : MonoBehaviour
 		leftSlashAnimator = leftSlash.GetComponent<Animator>();
 		stompBlast = GameObject.Find("Stomp");
 
+        defaultRunSpeed = runSpeed;
 
-        
-		rightSlash.gameObject.SetActive(false);
+        rightSlash.gameObject.SetActive(false);
         leftSlash.gameObject.SetActive(false);
 		stompBlast.gameObject.SetActive(false);
 		attacking = false;
@@ -197,7 +198,7 @@ public class PlayerControls : MonoBehaviour
         }
         else
         {
-            runSpeed = Mathf.Max(runSpeed, runSpeed); // Ensures boosted speed isn't overridden
+            runSpeed = Mathf.Max(runSpeed, defaultRunSpeed); 
         }
 
         float playerInput = Input.GetAxis("Horizontal");
