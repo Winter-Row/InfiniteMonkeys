@@ -4,7 +4,7 @@ Inifinite Monkeys is 2D action-roguelike game where the player traverses rooms d
 
 Imagine monkeys as test subjects in a massive science facility, traversing hazardous platforms and solving puzzles. The theme centers around the Infinite Monkey Theorem of keep trying over and over, and at some point in time, sucess will be found. This idea is a fundamental aspect of roguelike games in general, and we wanted to pay homage to that. With a roguelike structure, the levels are procedurally generated. This affects elements such as landscape and enemy placement, allowing for a unique play experience every time.
 
-## Installation
+## Installation (Windows Only!)
 
 <ins>The game can be ran in two ways:</ins>
 
